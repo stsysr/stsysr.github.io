@@ -16,17 +16,22 @@
   <script src="javascripts/scale.fix.js"></script> 
   <script type="text/javascript">
     $(function() {
-      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data){
-        var array = data[0].text.split('');
-        for (i=0; i<array.length; i++) {
+      function loop(max, data) {
+        for (i=0; i<max; i++) {
           var elm = document.createElement('div');
           elm.style.margin = [i*0.5, 'px', ' 0 0 ', i*10, 'px'].join('');
-          elm.style.fontSize = i*1.5 + 'px';
-          elm.style.height = '3px';
-          elm.innerHTML = array[i];
+          elm.style.fontSize = i*3 + 'px';
+          elm.style.height = i*2 + 'px';
+          (typeof data == 'string')? elm.innerHTML=data : elm.innerHTML=data[i];
           document.body.appendChild(elm);
         }
-      },"json");
+      }
+      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data){
+        var array = data[0].text.split('');
+        loop(array.length, array);
+      },"json")
+      //.done(function(){return true;}).fail(function(){loop(100, '/');})
+      ;
     });
   </script>
   </body>
