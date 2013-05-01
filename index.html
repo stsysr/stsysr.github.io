@@ -20,7 +20,7 @@
         for (i=0; i<max; i++) {
           var elm = document.createElement('div');
           elm.style.margin = [i*0.5, 'px', ' 0 0 ', i*10, 'px'].join('');
-          elm.style.fontSize = i*3 + 'px';
+          elm.style.fontSize = (i+1)*3 + 'px';
           elm.style.height = i*2 + 'px';
           (typeof data == 'string')? elm.innerHTML=data : elm.innerHTML=data[i];
           document.body.appendChild(elm);
@@ -29,9 +29,7 @@
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data){
         var array = data[0].text.split('');
         loop(array.length, array);
-      },"json")
-      //.done(function(){return true;}).fail(function(){loop(100, '/');})
-      ;
+      },"json").done(function(){return true;}).fail(function(){loop(100, '/');});
     });
   </script>
   </body>
