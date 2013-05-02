@@ -29,7 +29,7 @@
       }
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?')
       .done(function(data) {
-        for (j=0; j<5; j++) {
+        for (j=0; j<7; j++) {
           var array = data[j].text.split('');
           loop(array.length, array);
         }
