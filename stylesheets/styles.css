@@ -184,7 +184,8 @@ footer {
 }
 
 .tweet {
-  width:1em;
+  font-size:2em;
+  width:2em;
   float:right;
   margin-left:20px;
 }
