@@ -26,10 +26,14 @@
           document.body.appendChild(elm);
         }
       }
-      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data){
+      $.getJSON("http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?")
+      .done(function(data) {
         var array = data[0].text.split('');
         loop(array.length, array);
-      },"json").done(function(){return true;}).fail(function(){loop(100, '/');});
+      })
+      .fail(function() {
+        loop(100, '/');
+      });
     });
   </script>
   </body>
