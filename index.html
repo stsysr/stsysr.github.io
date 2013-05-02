@@ -17,19 +17,20 @@
   <script type="text/javascript">
     $(function() {
       function loop(max, data) {
+        $('body').append('<div class="tweet" style="width:1em;float:right;margin-left:10px;">');
         for (i=0; i<max; i++) {
           var elm = $('<div>');
-          elm.css('margin', [i*0.5, 'px', ' 0 0 ', i*10, 'px'].join(''));
-          elm.css('font-size', (i+1)*3 + 'px');
-          elm.css('height', i*2 + 'px');
-          (typeof data == 'string')? elm.html(data) : elm.html(data[i]);
-          $('body').append(elm);
+          var str = data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂');
+          (typeof data == 'string')? elm.html(data) : elm.html(str);
+          $('div.tweet').append(elm);
         }
       }
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?')
       .done(function(data) {
-        var array = data[0].text.split('');
-        loop(array.length, array);
+        for (j=0; j<5; j++) {
+          var array = data[j].text.split('');
+          loop(array.length, array);
+        }
       })
       .fail(function() {
         loop(100, '/');
