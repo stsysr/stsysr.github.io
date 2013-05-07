@@ -28,7 +28,7 @@
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?')
       .done(function(data) {
         for (j=0; j<5; j++) {
-          var array = data[j].text.split('');
+          var array = data[j].text.replace(/(^|\s)@(\w+)/g, '').split('');
           loop(array.length, array);
         }
       })
