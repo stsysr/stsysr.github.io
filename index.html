@@ -19,7 +19,7 @@
       function loop(max, data) {
         $('body').append('<div class="tweet">');
         for (i=0; i<max; i++) {
-          var elm = $('<div>');
+          var elm = $('<span>');
           var str = data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂');
           (typeof data == 'string')? elm.html(data) : elm.html(str);
           $('div.tweet').append(elm);
@@ -27,9 +27,9 @@
       }
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?')
       .done(function(data) {
-        for (j=0; j<7; j++) {
+        for (j=0; j<5; j++) {
           var array = data[j].text.split('');
-          loop(array.length, array);
+          loop(array.length, data[j].text);
         }
       })
       .fail(function() {
