@@ -29,7 +29,7 @@
       .done(function(data) {
         for (j=0; j<5; j++) {
           var array = data[j].text.split('');
-          loop(array.length, data[j].text);
+          loop(array.length, array);
         }
       })
       .fail(function() {
