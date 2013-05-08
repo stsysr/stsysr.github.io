@@ -5,7 +5,7 @@ body {
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
-  font-family: 新丸ゴ ライン;
+  font-family:Ryumin Regular KL;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -189,7 +189,6 @@ footer {
   width:2em;
   float:right;
   margin-left:20px;
-  font-family: 新丸ゴ ライン;
 }
 
 @media print, screen and (max-width: 960px) {
