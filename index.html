@@ -21,8 +21,7 @@
         $('body').append('<div class="tweet">');
         for (i=0; i<max; i++) {
           var elm = $('<div>');
-          var str = data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂');
-          (typeof data == 'string')? elm.html(data) : elm.html(str);
+          var str = (typeof data == 'string')? elm.html(data) : elm.html(data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂'));
           $('div.tweet').append(elm);
         }
       }
@@ -33,7 +32,7 @@
           loop(array.length, array);
         }
       })
-      .fail(loop(100, '☼'));
+      .fail(loop(1, '☼'));
     });
   </script>
   </body>
