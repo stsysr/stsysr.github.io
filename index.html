@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title></title>
+    <title>☼</title>
     <script type="text/javascript" src="http://typesquare.com/accessor/script/typesquare.js?T53kh5CYQcg%3D" charset="utf-8"></script>
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -22,17 +21,20 @@
         for (i=0; i<max; i++) {
           var elm = $('<div>');
           var str = (typeof data == 'string')? elm.html(data) : elm.html(data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂'));
-          $('div.tweet').append(elm);
+          $('div.tweet').append(elm[0]);
         }
       }
-      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?')
-      .done(function(data) {
+      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
+        console.log(xhr.status);
         for (j=0; j<5; j++) {
-          var array = data[j].text.replace(/(^|\s)@(\w+)/g, '').replace(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/, '').split('');
-          loop(array.length, array);
+          if (xhr.status == 400) {
+            loop(1, '☼');
+          } else {
+            var array = data[j].text.replace(/(^|\s)@(\w+)/g, '').replace(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/, '').split('');
+            loop(array.length, array);
+          }
         }
-      })
-      .fail(loop(1, '☼'));
+      });
     });
   </script>
   </body>
