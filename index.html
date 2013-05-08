@@ -19,7 +19,7 @@
     $(function() {
       function loop(max, data) {
         $('body').append('<div class="tweet">');
-        for (i=0; i<max; i++) {
+        for (i=4; i<max; i++) {
           var elm = $('<div>');
           var str = data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂');
           (typeof data == 'string')? elm.html(data) : elm.html(str);
