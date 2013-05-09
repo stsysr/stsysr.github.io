@@ -21,7 +21,7 @@
         for (i=0; i<max; i++) {
           var elm = $('<div style="padding-left:' + i*3 + 'px;">');
           var str = (typeof data == 'string')? elm.html(data) : elm.html(data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂'));
-          $('div.tweet').append(elm[0]);
+          $('div.tweet').append(str);
         }
       }
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
