@@ -25,7 +25,7 @@
         }
       }
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
-        for (j=0; j<7; j++) {
+        for (j=0; j<17; j++) {
           if (xhr.status == 400) {
             loop(1, '☼');
           } else {
