@@ -14,11 +14,6 @@
       function OK(position) {
         var gl_text = "緯度：" + position.coords.latitude + "<br>";
           gl_text += "経度：" + position.coords.longitude + "<br>";
-          gl_text += "高度：" + position.coords.altitude + "<br>";
-          gl_text += "緯度・経度の誤差：" + position.coords.accuracy + "<br>";
-          gl_text += "高度の誤差：" + position.coords.altitudeAccuracy + "<br>";
-          gl_text += "方角：" + position.coords.heading + "<br>";
-          gl_text += "速度：" + position.coords.speed + "<br>";
         document.getElementById("result").innerHTML = gl_text;
       }
 
@@ -26,7 +21,7 @@
         console.log("error: " + error.code);
       }
 
-      $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=35.63748930423344&lon=139.75400591231596&cnt=1&callback=?', function(data){
+      $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=' + osition.coords.latitude + '&lon=' + position.coords.longitude + '&cnt=1&callback=?', function(data){
         console.log(data.list[0].weather[0].description);
       });
 
