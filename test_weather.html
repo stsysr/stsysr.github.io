@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>☼</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  </head>
+  <body>
+  <script type="text/javascript">
+    $(function() {
+      $.ajax({
+        url: 'http://weather.yahooapis.com/forecastrss?w=1118295',
+        type: 'GET',
+        dataType: 'xml',
+        timeout: 1000,
+        error: function(){console.log('failed');},
+        success: function(){console/log('OK');}
+      });
+    });
+  </script>
+  </body>
+</html>
