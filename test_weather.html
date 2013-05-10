@@ -16,17 +16,15 @@
                     position.coords.longitude,
                     '&cnt=1&callback=?'].join('');
         $.getJSON(url, function(data){
-          var geo = "緯度：" + position.coords.latitude + "<br>";
-          geo += "経度：" + position.coords.longitude + "<br>";
-          console.log(data.list[0].weather[0].description);
-          geo += '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">';
-          $("span.result").html(geo);
+          var info = ['緯度：' + position.coords.latitude,
+                      '経度：' + position.coords.longitude,
+                      '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">'].join('<br>');
+          $("span.result").html(info);
         });
       }
       function NG(error) {
         console.log("error: " + error.code);
       }
-
     });
   </script>
   <span class="result"></span>
