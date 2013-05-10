@@ -8,15 +8,15 @@
   <body>
   <script type="text/javascript">
     $(function() {
-      $.ajax({
-        url: 'http://weather.yahooapis.com/forecastrss?w=1118295',
-        type: 'GET',
-        dataType: 'xml',
-        timeout: 1000,
-        error: function(){console.log('failed');},
-        success: function(){console/log('OK');}
+
+      navigator.geolocation.getCurrentPosition(function(){console.log("OK");}, function(){console.log("NO");});
+
+      $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=35.63748930423344&lon=139.75400591231596&cnt=1&callback=?', function(data){
+        console.log(data.list[0].weather[0].description);
       });
+
     });
   </script>
+
   </body>
 </html>
