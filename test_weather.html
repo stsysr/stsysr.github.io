@@ -21,7 +21,7 @@
         console.log("error: " + error.code);
       }
 
-      $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=' + osition.coords.latitude + '&lon=' + position.coords.longitude + '&cnt=1&callback=?', function(data){
+      $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&cnt=1&callback=?', function(data){
         console.log(data.list[0].weather[0].description);
       });
 
