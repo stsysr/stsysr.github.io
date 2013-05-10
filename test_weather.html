@@ -9,12 +9,12 @@
   <script type="text/javascript">
     $(function() {
       navigator.geolocation.getCurrentPosition(OK, NG);
-      var url = ['http://openweathermap.org/data/2.1/find/city?lat=',
-                  position.coords.latitude,
-                  '&lon=',
-                  position.coords.longitude,
-                  '&cnt=1&callback=?'].join('');
       function OK(position) {
+        var url = ['http://openweathermap.org/data/2.1/find/city?lat=',
+                    position.coords.latitude,
+                    '&lon=',
+                    position.coords.longitude,
+                    '&cnt=1&callback=?'].join('');
         $.getJSON('url', function(data){
           var geo = "緯度：" + position.coords.latitude + "<br>";
           geo += "経度：" + position.coords.longitude + "<br>";
