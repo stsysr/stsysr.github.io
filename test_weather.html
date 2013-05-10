@@ -23,7 +23,7 @@
       }
 
       function NG(error) {
-        console.log("error: "error.code);
+        console.log("error: " + error.code);
       }
 
       $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=35.63748930423344&lon=139.75400591231596&cnt=1&callback=?', function(data){
