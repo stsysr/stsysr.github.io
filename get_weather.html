@@ -14,10 +14,9 @@
     $(function() {
       navigator.geolocation.getCurrentPosition(OK, NG);
       function OK(position) {
-        var url = ['http://openweathermap.org/data/2.1/find/city?lat=',
-                   position.coords.latitude,
-                   '&lon=',
-                   position.coords.longitude,
+        var url = ['http://openweathermap.org/data/2.1/find/city?',
+                   'lat=' + position.coords.latitude,
+                   '&lon=' + position.coords.longitude,
                    '&cnt=1&callback=?'].join('');
         $.getJSON(url, function(data){
           var info = ['緯度：' + position.coords.latitude,
