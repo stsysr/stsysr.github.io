@@ -21,7 +21,8 @@
         $('body').append('<div class="tweet">');
         for (i=0; i<max; i++) {
           var elm = $('<div style="padding-left:' + i*3 + 'px;">');
-          var str = (typeof data == 'string')? elm.html(data) : elm.html(data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂'));
+          var txt = data[i].replace(/ー/g, '｜').replace(/「/g, '﹁').replace(/」/g, '﹂').replace(/-/g, '　');
+          var str = (typeof data == 'string')? elm.html(data) : elm.html(txt);
           $('div.tweet').append(str);
         }
       }
@@ -30,7 +31,7 @@
           if (xhr.status == 400) {
             loop(1, '☼');
           } else {
-            var array = data[j].text.replace(/(^|\s)@(\w+)/g, '').replace(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/, '').split('');
+            var array = data[j].text.replace(/(^|\s)@(\w+)|http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/g, '').split('');
             loop(array.length, array);
           }
         }
