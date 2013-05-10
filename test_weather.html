@@ -16,7 +16,7 @@
         geo += "経度：" + position.coords.longitude + "<br>";
         $.getJSON('http://openweathermap.org/data/2.1/find/city?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&cnt=1&callback=?', function(data){
           console.log(data.list[0].weather[0].description);
-          geo += '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">';
+          document.getElementById("result").innerHTML = '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">';
         });
         document.getElementById("result").innerHTML = geo;
       }
