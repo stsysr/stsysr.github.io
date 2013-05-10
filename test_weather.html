@@ -20,8 +20,7 @@
           geo += "経度：" + position.coords.longitude + "<br>";
           console.log(data.list[0].weather[0].description);
           geo += '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">';
-          console.log(geo);
-          $("span.result").html = geo;
+          $("span.result").html(geo);
         });
       }
       function NG(error) {
