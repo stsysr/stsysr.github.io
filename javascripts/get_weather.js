@@ -23,8 +23,8 @@ $(function() {
                   'pressure: ' + data.main.pressure + 'hpa',
                   'sunrise: ' + data.sys.sunrise,
                   'sunset: ' + data.sys.sunset,
-                  'wind: ' + data.wind.speed + 'm/s';
-                  'deg: ' + data.wind.deg + '°';
+                  'wind: ' + data.wind.speed + 'm/s',
+                  'deg: ' + data.wind.deg + '°',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
       $("span.result").html(info);
