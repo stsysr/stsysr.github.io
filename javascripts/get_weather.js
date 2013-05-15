@@ -1,7 +1,7 @@
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    var url = ['http://openweathermap.org/data/2.1/find/city?',
+    var url = ['http://api.openweathermap.org/data/2.5/weather?',
                'lat=' + position.coords.latitude,
                '&lon=' + position.coords.longitude,
                '&cnt=1&callback=?'].join('');
