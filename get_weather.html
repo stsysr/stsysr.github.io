@@ -7,29 +7,29 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="javascripts/scale.fix.js"></script> 
+    <script type="text/javascript">
+      $(function() {
+        navigator.geolocation.getCurrentPosition(OK, NG);
+        function OK(position) {
+          var url = ['http://openweathermap.org/data/2.1/find/city?',
+                     'lat=' + position.coords.latitude,
+                     '&lon=' + position.coords.longitude,
+                     '&cnt=1&callback=?'].join('');
+          $.getJSON(url, function(data){
+            var info = ['緯度：' + position.coords.latitude,
+                        '経度：' + position.coords.longitude,
+                        '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">'].join('<br>');
+            $("span.result").html(info);
+          });
+        }
+        function NG(error) {
+          $("span.result").html('エラー！');
+        }
+      });
+    </script>
   </head>
   <body>
-  <script src="javascripts/scale.fix.js"></script> 
-  <script type="text/javascript">
-    $(function() {
-      navigator.geolocation.getCurrentPosition(OK, NG);
-      function OK(position) {
-        var url = ['http://openweathermap.org/data/2.1/find/city?',
-                   'lat=' + position.coords.latitude,
-                   '&lon=' + position.coords.longitude,
-                   '&cnt=1&callback=?'].join('');
-        $.getJSON(url, function(data){
-          var info = ['緯度：' + position.coords.latitude,
-                      '経度：' + position.coords.longitude,
-                      '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">'].join('<br>');
-          $("span.result").html(info);
-        });
-      }
-      function NG(error) {
-        $("span.result").html('エラー！');
-      }
-    });
-  </script>
   <span class="result"></span>
   </body>
 </html>
