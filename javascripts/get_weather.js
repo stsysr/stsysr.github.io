@@ -15,7 +15,10 @@ $(function() {
                   'longitude: ' + data.coord.lon,
                   'country: ' + data.sys.country,
                   'city: ' + data.name,
+                  'weather: ' + data.weather[0].main,
                   'temperature: ' + KelvinToCelsius(data.main.temp),
+                  'max temperature: ' + KelvinToCelsius(data.main.temp_max),
+                  'min temperature: ' + KelvinToCelsius(data.main.temp_min),
                   'humidity: ' + data.main.humidity + '%',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
