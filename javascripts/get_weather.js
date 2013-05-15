@@ -1,6 +1,6 @@
 
 function KelvinToCelsius (Kelvin) {
-  return Kelvin - 273.15;
+  return Math.round(Kelvin - 273.15);
 }
 
 $(function() {
@@ -20,6 +20,7 @@ $(function() {
                   'max temperature: ' + KelvinToCelsius(data.main.temp_max),
                   'min temperature: ' + KelvinToCelsius(data.main.temp_min),
                   'humidity: ' + data.main.humidity + '%',
+                  'pressure: ' + data.main.pressure + 'hpa',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
       $("span.result").html(info);
