@@ -1,3 +1,8 @@
+
+function KelvinToCelsius (Kelvin) {
+  return Kelvin - 273.15;
+}
+
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
@@ -10,6 +15,7 @@ $(function() {
                   'longitude: ' + data.coord.lon,
                   'country: ' + data.sys.country,
                   'city: ' + data.name,
+                  'temperature: ' + KelvinToCelsius(data.main.temp),
                   'humidity: ' + data.main.humidity + '%',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
