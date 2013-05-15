@@ -8,8 +8,8 @@ $(function() {
     $.getJSON(url, function(data){
       var info = ['緯度：' + position.coords.latitude,
                   '経度：' + position.coords.longitude,
-                  data.list[0].weather[0].description,
-                  '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">'].join('<br>');
+                  data.name,
+                  '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
       $("span.result").html(info);
     });
   }
