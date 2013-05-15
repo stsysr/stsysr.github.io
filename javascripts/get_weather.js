@@ -1,6 +1,6 @@
 
 function KelvinToCelsius (Kelvin) {
-  return Math.round(Kelvin - 273.15);
+  return Math.round((Kelvin - 273.15)*100)/100;
 }
 
 $(function() {
