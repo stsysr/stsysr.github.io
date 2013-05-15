@@ -3,6 +3,10 @@ function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
 
+function getWindDirection (deg) {
+  return deg;
+}
+
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
