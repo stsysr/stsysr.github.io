@@ -16,11 +16,15 @@ $(function() {
                   'country: ' + data.sys.country,
                   'city: ' + data.name,
                   'weather: ' + data.weather[0].main,
-                  'temperature: ' + KelvinToCelsius(data.main.temp) + '℃',
-                  'max temperature: ' + KelvinToCelsius(data.main.temp_max) + '℃',
-                  'min temperature: ' + KelvinToCelsius(data.main.temp_min) + '℃',
+                  'temperature: ' + KelvinToCelsius(data.main.temp) + '°C',
+                  'max temperature: ' + KelvinToCelsius(data.main.temp_max) + '°C',
+                  'min temperature: ' + KelvinToCelsius(data.main.temp_min) + '°C',
                   'humidity: ' + data.main.humidity + '%',
                   'pressure: ' + data.main.pressure + 'hpa',
+                  'sunrise: ' + data.sys.sunrise,
+                  'sunset: ' + data.sys.sunset,
+                  'wind: ' + data.wind.speed + 'm/s';
+                  'deg: ' + data.wind.deg + '°';
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
       $("span.result").html(info);
