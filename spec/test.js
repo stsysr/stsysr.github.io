@@ -29,3 +29,11 @@ describe('Array', function(){
     })
   })
 })
+
+describe('getWindDirection', function(){
+  describe('getWindDirection()', function(){
+    it('is define?', function(){
+      expect(getWindDirection('175')).to.eql('175');
+    })
+  })
+})
