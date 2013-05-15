@@ -8,7 +8,7 @@ $(function() {
     $.getJSON(url, function(data){
       var info = ['緯度：' + data.coord.lat,
                   '経度：' + data.coord.lon,
-                  data.country,
+                  data.sys.country,
                   data.name,
                   data.weather[0].description,
                   data.main.humidity + '%',
