@@ -11,6 +11,9 @@
 var assert = require("assert")
 var expect = require('expect.js');
 
+var getWindDirection = require('./../get_weather.js');
+var $ = require('jquery');
+
 describe('Array', function(){
   describe('#indexOf()', function(){
     it('should return -1 when the value is not present', function(){
