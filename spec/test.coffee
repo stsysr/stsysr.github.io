@@ -7,9 +7,6 @@ jsdom = require 'jsdom'
 
 describe 'getWindDirection', ->
 
-  it 'getWindDirection is defined', ->
-    expect(getWindDirection '180').to.eql '180'
-
   it 'should return North', ->
     expect(getWindDirection '10').to.eql 'North'
 
