@@ -1,3 +1,4 @@
+
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -36,7 +37,15 @@ function buildForecastTable (data) {
 
 function shortenDateFormat (date) {
   var yyyymmddhhmm = date.substring(5, 19).split(' ');
-  var mmdd = yyyymmddhhmm[0].replace('-','/');
+  // var date_arr = yyyymmddhhmm[0].split('-');
+  // for (i=0; i<date_arr.length; i++) {
+  //   if (date_arr[i].substring(0, 1)=='0') {
+  //     var tmp = date_arr[i].slice(1, 2);
+  //     date_arr.splice(1, 1, tmp);
+  //   } 
+  // }
+  // var mmdd = date_arr.join('/');
+  var mmdd = yyyymmddhhmm[0].replace('-', '/');
   var hhmm = yyyymmddhhmm[1].slice(0, -3);
   return mmdd + ' ' + hhmm;
 }
