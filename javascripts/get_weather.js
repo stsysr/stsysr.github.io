@@ -1,3 +1,4 @@
+
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -9,9 +10,15 @@ function getWindDirection (degree) {
 }
 
 function buildForecastTable (data) {
+  var html = [];
+  html.push('<table><tr>');
   for (i=0; i<data.cnt; i++) {
-    console.log(KelvinToCelsius(data.list[i].main.temp) + '°C');
+    html.push('<td>');
+    html.push('<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">');
+    html.push('</td>');
   }
+  html.push('</tr></table>');
+  console.log(html);
 }
 
 $(function() {
