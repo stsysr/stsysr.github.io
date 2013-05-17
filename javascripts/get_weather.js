@@ -40,6 +40,7 @@ $(function() {
     //   $("div.current").html(info);
     // });
     $.getJSON(forecast, function(data){
+      console.log(data);
       var icon = '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">';
       $("div.forecast").html(icon);
     });
