@@ -20,7 +20,7 @@ function buildForecastTable (data) {
   table.push('</tr><tr>');
   for (i=0; i<data.cnt; i++) {
     table.push('<td>');
-    table.push('<img src="http://openweathermap.org/img/w/' + data.list[i].weather[i].icon + '.png">');
+    table.push('<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">');
     table.push('</td>');
   }
   table.push('</tr></table>');
