@@ -12,11 +12,14 @@ function getWindDirection (degree) {
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    var url = ['http://api.openweathermap.org/data/2.5/weather?',
+    var current = ['http://api.openweathermap.org/data/2.5/weather?',
                'lat=' + position.coords.latitude,
                '&lon=' + position.coords.longitude,
                '&cnt=1&callback=?'].join('');
-    $.getJSON(url, function(data){
+    var forecast = ['http://api.openweathermap.org/data/2.5/forecast?lat=',
+                    'lat=' + position.coords.latitude,
+                    '&lon=' + position.coords.longitude].join('');
+    $.getJSON(current, function(data){
       var info = ['latitude: ' + data.coord.lat,
                   'longitude: ' + data.coord.lon,
                   'country: ' + data.sys.country,
@@ -33,10 +36,14 @@ $(function() {
                   'deg: ' + getWindDirection(data.wind.deg) + '/' + data.wind.deg + '°',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
-      $("span.result").html(info);
+      $("div.current").html(info);
+    });
+    $.getJSON(forecast, function(data){
+      var icon = '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">';
+      $("div.forecast").html(icon);
     });
   }
   function NG(error) {
-    $("span.result").html('error');
+    $("div.current").html('error');
   }
 });
