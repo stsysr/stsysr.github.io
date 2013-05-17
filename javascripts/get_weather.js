@@ -1,3 +1,4 @@
+
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -11,47 +12,35 @@ function getWindDirection (degree) {
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    // var current = ['http://api.openweathermap.org/data/2.5/weather?',
-    //            'lat=' + position.coords.latitude,
-    //            '&lon=' + position.coords.longitude,
-    //            '&cnt=1&callback=?'].join('');
     var forecast = [
       'http://api.openweathermap.org/data/2.5/forecast?',
       'lat=' + position.coords.latitude,
       '&lon=' + position.coords.longitude,
       '&cnt=1&callback=?'
     ].join('');
-    // $.getJSON(current, function(data){
-    //   var info = ['latitude: ' + data.coord.lat,
-    //               'longitude: ' + data.coord.lon,
-    //               'country: ' + data.sys.country,
-    //               'city: ' + data.name,
-    //               'weather: ' + data.weather[0].main,
-    //               'temperature: ' + KelvinToCelsius(data.main.temp) + '°C',
-    //               'max temperature: ' + KelvinToCelsius(data.main.temp_max) + '°C',
-    //               'min temperature: ' + KelvinToCelsius(data.main.temp_min) + '°C',
-    //               'humidity: ' + data.main.humidity + '%',
-    //               'pressure: ' + data.main.pressure + 'hpa',
-    //               'sunrise: ' + data.sys.sunrise,
-    //               'sunset: ' + data.sys.sunset,
-    //               'wind: ' + data.wind.speed + 'm/s',
-    //               'deg: ' + getWindDirection(data.wind.deg) + '/' + data.wind.deg + '°',
-    //               'description: ' + data.weather[0].description,
-    //               '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
-    //   $("div.current").html(info);
-    // });
-    
     $.getJSON(forecast, function(data){
+      var info = [
+        'country: ' + data.sys.country,
+        'city: ' + data.city.name
+      ].join('<br>');
       var weather = [
+        'date: ' + data.list[0].dt_txt,
         '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">',
         'temperature: ' + KelvinToCelsius(data.list[0].main.temp) + '°C',
+        'max temperature: ' + KelvinToCelsius(data.list[0].main.temp_max) + '°C',
+        'min temperature: ' + KelvinToCelsius(data.list[0].main.temp_min) + '°C',
+        'pressure: ' + data.list[0].main.pressure + 'hpa',
+        'sea_level: ' + data.list[0].main.sea_level,
+        'grnd_level ' + data.list[0].main.grnd_level,
+        'humidity ' + data.list[0].main.humidity + '%',
+        'wind: ' + data.list[0].wind.speed + 'm/s',
+        'deg: ' + getWindDirection(data.list[0].wind.deg) + '/' + data.list[0].wind.deg + '°',
         'description: ' + data.list[0].weather[0].description
       ].join('<br>');
-      $("div.forecast").html(weather);
+      $("div.forecast").html(info + weather);
     });
   }
   function NG(error) {
-    $("div.current").html('error');
     $("div.forecast").html('error');
   }
 });
