@@ -1,4 +1,3 @@
-
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -11,7 +10,7 @@ function getWindDirection (degree) {
 
 function buildForecastTable (data) {
   for (i=0; i<data.cnt; i++) {
-    console.log(KelvinToCelsius(data.list[0].main.temp) + '°C');
+    console.log(KelvinToCelsius(data.list[i].main.temp) + '°C');
   }
 }
 
