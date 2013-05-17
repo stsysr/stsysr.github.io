@@ -9,6 +9,14 @@ function getWindDirection (degree) {
   return direction[number];
 }
 
+function buildHeaderHtml (data) {
+  var info = [
+    data.city.country,
+    data.city.name
+  ].join(' : ');
+  $(document.body).append($("<h2>").html(info););
+}
+
 function buildForecastTable (data) {
   var table = [];
   table.push('<table><tr>');
@@ -37,11 +45,7 @@ $(function() {
       '&cnt=1&callback=?'
     ].join('');
     $.getJSON(url, function(data){
-      var info = [
-        'country: ' + data.city.country,
-        'city: ' + data.city.name
-      ].join('<br>');
-      S(document.body).append($("<h2>").html(info););
+      buildHeaderHtml(data);
       buildForecastTable(data);
       // var info = [
       //   'country: ' + data.city.country,
