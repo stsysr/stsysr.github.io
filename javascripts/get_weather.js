@@ -45,5 +45,6 @@ $(function() {
   }
   function NG(error) {
     $("div.current").html('error');
+    $("div.forecast").html('error');
   }
 });
