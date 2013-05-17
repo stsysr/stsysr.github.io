@@ -3,8 +3,10 @@ function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
 
-function getWindDirection (deg) {
-  return deg;
+function getWindDirection (degree) {
+  var number = Math.round((degree/360)*16);
+  var direction = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW','N'];
+  return direction[number];
 }
 
 $(function() {
@@ -28,13 +30,13 @@ $(function() {
                   'sunrise: ' + data.sys.sunrise,
                   'sunset: ' + data.sys.sunset,
                   'wind: ' + data.wind.speed + 'm/s',
-                  'deg: ' + data.wind.deg + '°',
+                  'deg: ' + getWindDirection(data.wind.deg) + '/' + data.wind.deg + '°',
                   'description: ' + data.weather[0].description,
                   '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
       $("span.result").html(info);
     });
   }
   function NG(error) {
-    $("span.result").html('エラー！');
+    $("span.result").html('error');
   }
 });
