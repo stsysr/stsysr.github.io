@@ -1,4 +1,3 @@
-
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -14,7 +13,7 @@ function buildHeaderHtml (data) {
     data.city.country,
     data.city.name
   ].join(' : ');
-  $(document.body).after($("<h2>").html(info));
+  $(document.body).prepend($("<h2>").html(info));
 }
 
 function buildForecastTable (data) {
@@ -22,7 +21,7 @@ function buildForecastTable (data) {
   table.push('<table><tr>');
   for (i=0; i<data.cnt; i++) {
     table.push('<td>');
-    table.push(data.list[i].dt_txt);
+    table.push(shortenDateFormat(data.list[i].dt_txt));
     table.push('</td>');
   }
   table.push('</tr><tr>');
