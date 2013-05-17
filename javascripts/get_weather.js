@@ -16,7 +16,7 @@ $(function() {
                'lat=' + position.coords.latitude,
                '&lon=' + position.coords.longitude,
                '&cnt=1&callback=?'].join('');
-    var forecast = ['http://api.openweathermap.org/data/2.5/forecast?lat=',
+    var forecast = ['http://api.openweathermap.org/data/2.5/forecast?',
                     'lat=' + position.coords.latitude,
                     '&lon=' + position.coords.longitude].join('');
     $.getJSON(current, function(data){
