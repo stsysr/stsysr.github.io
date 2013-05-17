@@ -19,7 +19,7 @@ $(function() {
       '&cnt=1&callback=?'
     ].join('');
     $.getJSON(forecast, function(data){
-      concole.log(data.list.length);
+      console.log(data.list.length);
       var info = [
         'country: ' + data.sys.country,
         'city: ' + data.city.name
