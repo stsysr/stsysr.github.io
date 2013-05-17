@@ -1,4 +1,3 @@
-
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -41,6 +40,7 @@ $(function() {
     //               '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">'].join('<br>');
     //   $("div.current").html(info);
     // });
+    
     $.getJSON(forecast, function(data){
       var weather = [
         '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">',
