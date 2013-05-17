@@ -25,19 +25,23 @@ function buildForecastTable (data) {
   }
   table.push('</tr></table>');
   $("div.forecast").html(table.join(''));
-  console.log(table.join(''));
 }
 
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK (position) {
-    var forecast = [
+    var url = [
       'http://api.openweathermap.org/data/2.5/forecast?',
       'lat=' + position.coords.latitude,
       '&lon=' + position.coords.longitude,
       '&cnt=1&callback=?'
     ].join('');
-    $.getJSON(forecast, function(data){
+    $.getJSON(url, function(data){
+      var info = [
+        'country: ' + data.city.country,
+        'city: ' + data.city.name
+      ].join('<br>');
+      S(document.body).append($("<h2>").html(info););
       buildForecastTable(data);
       // var info = [
       //   'country: ' + data.city.country,
