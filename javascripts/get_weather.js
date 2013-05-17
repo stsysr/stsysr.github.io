@@ -35,6 +35,13 @@ function buildForecastTable (data) {
   $("div.forecast").html(table.join(''));
 }
 
+function shortenDateFormat (date) {
+  var yyyymmddhhmm = date.substring(5, 19).split(' ');
+  var mmdd = yyyymmddhhmm[0].replace('-','/');
+  var hhmm = yyyymmddhhmm[1].slice(0, -3);
+  return mmdd + '' + hhmm;
+}
+
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK (position) {
