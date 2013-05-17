@@ -14,6 +14,12 @@ function buildForecastTable (data) {
   table.push('<table><tr>');
   for (i=0; i<data.cnt; i++) {
     table.push('<td>');
+    table.push(data.list[0].dt_txt);
+    table.push('</td>');
+  }
+  table.push('</tr><tr>');
+  for (i=0; i<data.cnt; i++) {
+    table.push('<td>');
     table.push('<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">');
     table.push('</td>');
   }
