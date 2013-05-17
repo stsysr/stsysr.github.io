@@ -14,7 +14,7 @@ function buildHeaderHtml (data) {
     data.city.country,
     data.city.name
   ].join(' : ');
-  $(document.body).append($("<h2>").html(info));
+  $(document.body).after($("<h2>").html(info));
 }
 
 function buildForecastTable (data) {
