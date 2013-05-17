@@ -18,8 +18,8 @@ function buildForecastTable (data) {
     table.push('</td>');
   }
   table.push('</tr></table>');
-  $("div.forecast").html(table);
-  console.log(table);
+  $("div.forecast").html(table.join(''));
+  console.log(table.join(''));
 }
 
 $(function() {
