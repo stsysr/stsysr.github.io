@@ -34,7 +34,7 @@ function buildForecastTable (data) {
   table.push('</tr><tr>');
   for (i=0; i<data.cnt; i++) {
     table.push('<td>');
-    table.push(KelvinToCelsius(data.list[0].main.temp) + '°C',);
+    table.push(KelvinToCelsius(data.list[i].main.temp) + '°C');
     table.push('</td>');
   }
   table.push('</tr></table>');
