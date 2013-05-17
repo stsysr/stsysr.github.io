@@ -10,14 +10,14 @@ function getWindDirection (degree) {
 }
 
 function buildForecastTable (data) {
-  for () {
-
+  for (i=0; i<data.cnt; i++) {
+    console.log(KelvinToCelsius(data.list[0].main.temp) + '°C');
   }
 }
 
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
-  function OK(position) {
+  function OK (position) {
     var forecast = [
       'http://api.openweathermap.org/data/2.5/forecast?',
       'lat=' + position.coords.latitude,
@@ -25,7 +25,7 @@ $(function() {
       '&cnt=1&callback=?'
     ].join('');
     $.getJSON(forecast, function(data){
-      console.log(data.list.length);
+      console.log(buildForecastTable(data));
       var info = [
         'country: ' + data.city.country,
         'city: ' + data.city.name
@@ -47,7 +47,7 @@ $(function() {
       $("div.forecast").html(info + '<br>' + weather);
     });
   }
-  function NG(error) {
+  function NG (error) {
     $("div.forecast").html('error');
   }
 });
