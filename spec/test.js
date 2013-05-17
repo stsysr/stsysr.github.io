@@ -32,66 +32,65 @@ describe('getWindDirection', function(){
       expect(getWindDirection(11)).to.eql('N');
     })
 
-    it('should return N', function(){
+    it('should return NNE', function(){
       expect(getWindDirection(12)).to.eql('NNE');
     })
 
-    it('should return N', function(){
+    it('should return NE', function(){
       expect(getWindDirection(34)).to.eql('NE');
     })
 
-    it('should return N', function(){
+    it('should return ENE', function(){
       expect(getWindDirection(57)).to.eql('ENE');
     })
 
-    it('should return N', function(){
+    it('should return E', function(){
       expect(getWindDirection(79)).to.eql('E');
     })
 
-    it('should return N', function(){
+    it('should return ESE', function(){
       expect(getWindDirection(102)).to.eql('ESE');
     })
 
-    it('should return N', function(){
+    it('should return SE', function(){
       expect(getWindDirection(124)).to.eql('SE');
     })
 
-    it('should return N', function(){
+    it('should return SSE', function(){
       expect(getWindDirection(147)).to.eql('SSE');
     })
 
-    it('should return N', function(){
+    it('should return S', function(){
       expect(getWindDirection(169)).to.eql('S');
     })
 
-    it('should return N', function(){
+    it('should return SSW', function(){
       expect(getWindDirection(192)).to.eql('SSW');
     })
 
-    it('should return N', function(){
+    it('should return SW', function(){
       expect(getWindDirection(214)).to.eql('SW');
     })
 
-    it('should return N', function(){
+    it('should return WSW', function(){
       expect(getWindDirection(237)).to.eql('WSW');
     })
 
-    it('should return N', function(){
+    it('should return W', function(){
       expect(getWindDirection(259)).to.eql('W');
     })
 
-    it('should return N', function(){
+    it('should return WNW', function(){
       expect(getWindDirection(282)).to.eql('WNW');
     })
 
-    it('should return N', function(){
+    it('should return NW', function(){
       expect(getWindDirection(304)).to.eql('NW');
     })
 
-    it('should return N', function(){
+    it('should return NNW', function(){
       expect(getWindDirection(327)).to.eql('NNW');
     })
 
   })
 })
-
