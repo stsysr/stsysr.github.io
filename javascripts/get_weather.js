@@ -12,14 +12,16 @@ function getWindDirection (degree) {
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    var current = ['http://api.openweathermap.org/data/2.5/weather?',
-               'lat=' + position.coords.latitude,
-               '&lon=' + position.coords.longitude,
-               '&cnt=1&callback=?'].join('');
-    var forecast = ['http://api.openweathermap.org/data/2.5/forecast?',
-                    'lat=' + position.coords.latitude,
-                    '&lon=' + position.coords.longitude,
-                    '&cnt=1&callback=?'].join('');
+    // var current = ['http://api.openweathermap.org/data/2.5/weather?',
+    //            'lat=' + position.coords.latitude,
+    //            '&lon=' + position.coords.longitude,
+    //            '&cnt=1&callback=?'].join('');
+    var forecast = [
+      'http://api.openweathermap.org/data/2.5/forecast?',
+      'lat=' + position.coords.latitude,
+      '&lon=' + position.coords.longitude,
+      '&cnt=1&callback=?'
+    ].join('');
     // $.getJSON(current, function(data){
     //   var info = ['latitude: ' + data.coord.lat,
     //               'longitude: ' + data.coord.lon,
@@ -43,8 +45,8 @@ $(function() {
       var weather = [
         '<img src="http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png">',
         'temperature: ' + KelvinToCelsius(data.list[0].main.temp) + '°C',
-        'description: ' + data.list[0].weather[0].description].join('<br>');
-      ];
+        'description: ' + data.list[0].weather[0].description
+      ].join('<br>');
       $("div.forecast").html(weather);
     });
   }
