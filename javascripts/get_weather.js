@@ -18,7 +18,8 @@ $(function() {
                '&cnt=1&callback=?'].join('');
     var forecast = ['http://api.openweathermap.org/data/2.5/forecast?',
                     'lat=' + position.coords.latitude,
-                    '&lon=' + position.coords.longitude].join('');
+                    '&lon=' + position.coords.longitude,
+                    '&cnt=1&callback=?'].join('');
     // $.getJSON(current, function(data){
     //   var info = ['latitude: ' + data.coord.lat,
     //               'longitude: ' + data.coord.lon,
