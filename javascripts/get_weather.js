@@ -21,7 +21,7 @@ $(function() {
     $.getJSON(forecast, function(data){
       console.log(data.list.length);
       var info = [
-        'country: ' + data.sys.country,
+        'country: ' + data.country,
         'city: ' + data.city.name
       ].join('<br>');
       var weather = [
