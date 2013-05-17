@@ -9,6 +9,12 @@ function getWindDirection (degree) {
   return direction[number];
 }
 
+function buildForecastTable (data) {
+  for () {
+
+  }
+}
+
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
@@ -21,7 +27,7 @@ $(function() {
     $.getJSON(forecast, function(data){
       console.log(data.list.length);
       var info = [
-        'country: ' + data.country,
+        'country: ' + data.city.country,
         'city: ' + data.city.name
       ].join('<br>');
       var weather = [
@@ -38,7 +44,7 @@ $(function() {
         'deg: ' + getWindDirection(data.list[0].wind.deg) + '/' + data.list[0].wind.deg + '°',
         'description: ' + data.list[0].weather[0].description
       ].join('<br>');
-      $("div.forecast").html(info + weather);
+      $("div.forecast").html(info + '<br>' + weather);
     });
   }
   function NG(error) {
