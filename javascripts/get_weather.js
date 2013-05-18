@@ -1,4 +1,3 @@
-
 function KelvinToCelsius (Kelvin) {
   return Math.round((Kelvin - 273.15)*10)/10;
 }
@@ -27,6 +26,7 @@ function buildForecastTable (data) {
   }
   table.push('</tr><tr>');
   for (i=0; i<data.cnt; i++) {
+    console.log(data.list[i].weather[0].icon);
     table.push('<td>');
     table.push('<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">');
     table.push('</td>');
