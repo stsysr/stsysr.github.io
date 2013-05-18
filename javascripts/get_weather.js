@@ -19,20 +19,20 @@ function buildHeaderHtml (data) {
 function buildForecastTable (data) {
   var table = [];
   table.push('<table><tr>');
-  for (i=0; i<data.cnt; i++) {
+  for (i=3; i<data.cnt; i++) {
     table.push('<td>');
     table.push(shortenDateFormat(data.list[i].dt_txt));
     table.push('</td>');
   }
   table.push('</tr><tr>');
-  for (i=0; i<data.cnt; i++) {
+  for (i=3; i<data.cnt; i++) {
     console.log(data.list[i].weather[0].icon);
     table.push('<td>');
     table.push('<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">');
     table.push('</td>');
   }
   table.push('</tr><tr>');
-  for (i=0; i<data.cnt; i++) {
+  for (i=3; i<data.cnt; i++) {
     table.push('<td>');
     table.push(KelvinToCelsius(data.list[i].main.temp) + '°C');
     table.push('</td>');
