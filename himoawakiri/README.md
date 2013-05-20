@@ -25,5 +25,5 @@
 
 ### 日付×ユーザー
 
-* user : himo で絞り込んで、古いデータ順に並べ替える
+* user : himo で絞り込んで、古いデータ順に並べ替える  
   http://stsysr.github.io/himoawakiri/debug.html?sort=asc&user=himo
