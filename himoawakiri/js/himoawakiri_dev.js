@@ -5,11 +5,23 @@ function getURL (name) {
 
 function dispData (himo, awa, kiri) {
   var array = sortArrayByDate(getConcatArray(himo, awa, kiri));
+  var table = [];
+  table.push('<table border="1">');
+  table.push('<caption>data : ');
+  table.push(array.length);
+  table.push('</caption>');
+  table.push('<tr><th>image</th><th>post time</th></tr>');
   for (i=0; i<array.length; i++) {
-    var img_url = array[i].url;
-    var tag = ['<a href="', img_url, '"><img src ="', img_url, '" /></a>'].join('');
-    $(document.body).append(tag);
+    console.log(array[i]);
+	  var img_url = array[i].url;
+    table.push('<tr><td>');
+    table.push(['<a href="', img_url, '"><img src ="', img_url, '" /></a>'].join(''));
+    table.push('</td><td>');
+    table.push(array[i].raw_date);
+    table.push('</td></tr>');
   }
+  table.push('</table>');
+  $(document.body).append(table.join(''));
 }
 
 function getParamValue (url, key) {
@@ -56,6 +68,7 @@ function addObjectToArray (data) {
   var array = [];
   for (i=0; i<data.posts.length; i++) {
     array.push({
+    	'raw_date': data.posts[i]['date-gmt'],
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
       'url': data.posts[i]['photo-url-100']
     });
