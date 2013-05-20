@@ -26,7 +26,7 @@ function buildForecastTable (data) {
   }
   table.push('</tr><tr>');
   for (i=3; i<data.cnt; i++) {
-    console.log(i +" / "+ data.list[i].weather[0].icon);
+    console.log(data.list[i].dt_txt + " / " + i +" / "+ data.list[i].weather[0].icon);
     table.push('<td>');
     table.push('<img src="http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png">');
     table.push('</td>');
