@@ -12,15 +12,43 @@ function dispData (himo, awa, kiri) {
   }
 }
 
+function getParamValue (url, key) {
+  uri = url.split('?');
+  if (uri.length < 2) return '';
+  var params = uri[1].split('&');
+  for (var i=0; i<params.length; i++) {
+    var key_value = params[i].split("=");
+    if (key_value[0] == key && key_value.length == 2) {
+      return key_value[1];
+    }
+  }
+  return '';
+}
+
 function getConcatArray (himo, awa, kiri) {
+  var param = getParamValue(location.href, 'user');
   var h = addObjectToArray(himo);
   var a = addObjectToArray(awa);
   var k = addObjectToArray(kiri);
-  return h.concat(a, k);
+  if (param == 'himo') {
+    return h;
+  } else if (param == 'awa') {
+    return a;
+  } else if (param == 'kiri') {
+    return k;
+  } else {
+    return h.concat(a, k);
+  }
 }
 
 function sortArrayByDate (array) {
-  array.sort(function(a, b) {return a["date"] < b["date"] ? 1 : -1;});
+  if (getParamValue(location.href, 'sort') == 'asc') {
+    // 昇順 param -> ?sort=asc
+    array.sort(function(a, b) {return a["date"] > b["date"] ? 1 : -1;});
+  } else {
+    // 降順
+    array.sort(function(a, b) {return a["date"] < b["date"] ? 1 : -1;});
+  }
   return array;
 }
 
@@ -29,7 +57,7 @@ function addObjectToArray (data) {
   for (i=0; i<data.posts.length; i++) {
     array.push({
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
-      'url': data.posts[i]['photo-url-250']
+      'url': data.posts[i]['photo-url-100']
     });
   }
   return array;
