@@ -10,14 +10,14 @@ function dispData (himo, awa, kiri) {
   table.push('<caption>data : ');
   table.push(array.length);
   table.push('</caption>');
-  table.push('<tr><th>image</th><th>post time</th></tr>');
+  table.push('<tr><th>image</th><th>timestamp</th></tr>');
   for (i=0; i<array.length; i++) {
     console.log(array[i]);
     var img_url = array[i].url;
     table.push('<tr><td>');
     table.push(['<a href="', img_url, '"><img src ="', img_url, '" /></a>'].join(''));
     table.push('</td><td>');
-    table.push(array[i].raw_date);
+    table.push(convertUnixTimestamp(array[i].timestamp));
     table.push('</td></tr>');
   }
   table.push('</table>');
@@ -55,10 +55,8 @@ function getConcatArray (himo, awa, kiri) {
 
 function sortArrayByDate (array) {
   if (getParamValue(location.href, 'sort') == 'asc') {
-    // 昇順 param -> ?sort=asc
     array.sort(function(a, b) {return a["date"] > b["date"] ? 1 : -1;});
   } else {
-    // 降順
     array.sort(function(a, b) {return a["date"] < b["date"] ? 1 : -1;});
   }
   return array;
@@ -68,12 +66,23 @@ function addObjectToArray (data) {
   var array = [];
   for (i=0; i<data.posts.length; i++) {
     array.push({
-      'raw_date': data.posts[i]['date-gmt'],
+      'timestamp': data.posts[i]['unix-timestamp'],
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
       'url': data.posts[i]['photo-url-100']
     });
   }
   return array;
+}
+
+function convertUnixTimestamp (timestamp) {
+  var d = new Date( timestamp * 1000 );
+  var year  = d.getFullYear();
+  var month = d.getMonth() + 1;
+  var day  = d.getDate();
+  var hour = ( d.getHours()   < 10 ) ? '0' + d.getHours()   : d.getHours();
+  var min  = ( d.getMinutes() < 10 ) ? '0' + d.getMinutes() : d.getMinutes();
+  var sec   = ( d.getSeconds() < 10 ) ? '0' + d.getSeconds() : d.getSeconds();
+  return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec;
 }
 
 $(function() {
