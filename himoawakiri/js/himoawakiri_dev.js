@@ -9,7 +9,7 @@ function dispData (himo, awa, kiri) {
   table.push('<table border="1">');
   table.push(['<caption>data : ', array.length, ' posts</caption>'].join(''));
   table.push('<tr><th>image</th><th>user</th><th>timestamp</th><th>reblog-key</th></tr>');
-  for (i=0; i<array.length; i++) {
+  for (var i=0; i<array.length; i++) {
     console.log(array[i]);
     table.push('<tr><td>');
     table.push(['<a href="', array[i].url, '"><img src ="', array[i].image_url, '" /></a>'].join(''));
@@ -65,7 +65,7 @@ function sortArrayByDate (array) {
 
 function addObjectToArray (data) {
   var array = [];
-  for (i=0; i<data.posts.length; i++) {
+  for (var i=0; i<data.posts.length; i++) {
     array.push({
       'name': data.tumblelog.name,
       'timestamp': data.posts[i]['unix-timestamp'],
