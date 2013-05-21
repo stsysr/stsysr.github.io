@@ -9,15 +9,18 @@ function dispData (himo, awa, kiri) {
   table.push('<table border="1">');
   table.push('<caption>data : ');
   table.push(array.length);
-  table.push('</caption>');
-  table.push('<tr><th>image</th><th>timestamp</th></tr>');
+  table.push(' posts</caption>');
+  table.push('<tr><th>image</th><th>user</th><th>timestamp</th><th>reblog-key</th></tr>');
   for (i=0; i<array.length; i++) {
     console.log(array[i]);
-    var img_url = array[i].url;
     table.push('<tr><td>');
-    table.push(['<a href="', img_url, '"><img src ="', img_url, '" /></a>'].join(''));
+    table.push(['<a href="', array[i].url, '"><img src ="', array[i].image_url, '" /></a>'].join(''));
+    table.push('</td><td>');
+    table.push(array[i].name);
     table.push('</td><td>');
     table.push(convertUnixTimestamp(array[i].timestamp));
+    table.push('</td><td>');
+    table.push(array[i]['reblog-key']);
     table.push('</td></tr>');
   }
   table.push('</table>');
@@ -66,9 +69,12 @@ function addObjectToArray (data) {
   var array = [];
   for (i=0; i<data.posts.length; i++) {
     array.push({
+      'name': data.tumblelog.name,
       'timestamp': data.posts[i]['unix-timestamp'],
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
-      'url': data.posts[i]['photo-url-100']
+      'image_url': data.posts[i]['photo-url-100'],
+      'url': data.posts[i]['url'],
+      'reblog-key': data.posts[i]['reblog-key']
     });
   }
   return array;
