@@ -26,7 +26,7 @@ function dispData (himo, awa, kiri) {
 }
 
 function getParamValue (url, key) {
-  uri = url.split('?');
+  var uri = url.split('?');
   if (uri.length < 2) return '';
   var params = uri[1].split('&');
   for (var i=0; i<params.length; i++) {
