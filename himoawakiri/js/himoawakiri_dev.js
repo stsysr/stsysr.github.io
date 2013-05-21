@@ -7,9 +7,7 @@ function dispData (himo, awa, kiri) {
   var array = sortArrayByDate(getConcatArray(himo, awa, kiri));
   var table = [];
   table.push('<table border="1">');
-  table.push('<caption>data : ');
-  table.push(array.length);
-  table.push(' posts</caption>');
+  table.push(['<caption>data : ', array.length, ' posts</caption>'].join(''));
   table.push('<tr><th>image</th><th>user</th><th>timestamp</th><th>reblog-key</th></tr>');
   for (i=0; i<array.length; i++) {
     console.log(array[i]);
