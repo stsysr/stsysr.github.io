@@ -6,8 +6,7 @@ function getURL (name) {
 function dispImage (himo, awa, kiri) {
   var array = sortArrayByDate(getConcatArray(himo, awa, kiri));
   for (i=0; i<array.length; i++) {
-    var img_url = array[i].url;
-    var tag = ['<a href="', img_url, '"><img src ="', img_url, '" /></a>'].join('');
+    var tag = ['<a href="', array[i].url, '"><img src ="', array[i].image_url, '" /></a>'].join('');
     $(document.body).append(tag);
   }
 }
@@ -29,7 +28,8 @@ function addObjectToArray (data) {
   for (i=0; i<data.posts.length; i++) {
     array.push({
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
-      'url': data.posts[i]['photo-url-250']
+      'image_url': data.posts[i]['photo-url-100'],
+      'url': data.posts[i]['url'],
     });
   }
   return array;
