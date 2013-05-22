@@ -1,6 +1,5 @@
-
 function getURL (name) {
-  return ['http://', name, '.tumblr.com/api/read/json?num=100&cnt=1&callback=?'].join('');
+  return ['http://', name, '.tumblr.com/api/read/json?num=200&cnt=1&callback=?'].join('');
 }
 
 function dispData (himo, awa, kiri) {
