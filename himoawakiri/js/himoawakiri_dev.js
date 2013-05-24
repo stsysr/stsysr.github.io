@@ -1,9 +1,10 @@
+
 function getURL (name) {
-  return ['http://', name, '.tumblr.com/api/read/json?num=200&cnt=1&callback=?'].join('');
+  return ['http://', name, '.tumblr.com/api/read/json?num=100&cnt=1&callback=?'].join('');
 }
 
-function dispData (himo, awa, kiri) {
-  var array = sortArrayByDate(getConcatArray(himo, awa, kiri));
+function dispData (himo, awa, kiri, awa2, kiri2) {
+  var array = sortArrayByDate(getConcatArray(himo, awa, kiri, awa2, kiri2));
   var table = [];
   table.push('<table border="1">');
   table.push(['<caption>data : ', array.length, ' posts</caption>'].join(''));
@@ -37,19 +38,25 @@ function getParamValue (url, key) {
   return '';
 }
 
-function getConcatArray (himo, awa, kiri) {
+function getConcatArray (himo, awa, kiri, awa2, kiri2) {
   var param = getParamValue(location.href, 'user');
   var h = addObjectToArray(himo);
   var a = addObjectToArray(awa);
   var k = addObjectToArray(kiri);
+  var a2 = addObjectToArray(awa2);
+  var k2 = addObjectToArray(kiri2);
   if (param == 'himo') {
     return h;
   } else if (param == 'awa') {
     return a;
   } else if (param == 'kiri') {
     return k;
+  } else if (param == 'awa2') {
+    return a2;
+  } else if (param == 'kiri2') {
+    return k2;
   } else {
-    return h.concat(a, k);
+    return h.concat(a, k, a2, k2);
   }
 }
 
@@ -93,8 +100,12 @@ $(function() {
   $.getJSON(getURL('himoawakiri'), function(himo){
     $.getJSON(getURL('awakirihimo'), function(awa){
       $.getJSON(getURL('kirihimoawa'), function(kiri){
-        dispData(himo, awa, kiri);
-        $('span.loading').remove();
+        $.getJSON(getURL('awahimokiri'), function(awa2){
+          $.getJSON(getURL('kiriawahimo'), function(kiri2){
+            dispData(himo, awa, kiri, awa2, kiri2);
+            $('span.loading').remove();
+          });
+        });
       });
     });
   });
