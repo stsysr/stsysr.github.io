@@ -72,14 +72,16 @@ function sortArrayByDate (array) {
 function addObjectToArray (data) {
   var array = [];
   for (var i=0; i<data.posts.length; i++) {
-    array.push({
-      'name': data.tumblelog.name,
-      'timestamp': data.posts[i]['unix-timestamp'],
-      'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
-      'image_url': data.posts[i]['photo-url-100'],
-      'url': data.posts[i]['url'],
-      'reblog-key': data.posts[i]['reblog-key']
-    });
+    if (data.posts[i]['type'] == 'photo') {
+      array.push({
+        'name': data.tumblelog.name,
+        'timestamp': data.posts[i]['unix-timestamp'],
+        'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
+        'image_url': data.posts[i]['photo-url-100'],
+        'url': data.posts[i]['url'],
+        'reblog-key': data.posts[i]['reblog-key']
+      });
+    } 
   }
   return array;
 }
