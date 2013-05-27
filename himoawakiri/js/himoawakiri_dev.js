@@ -1,4 +1,3 @@
-
 function getURL (name) {
   return ['http://', name, '.tumblr.com/api/read/json?num=100&cnt=1&callback=?'].join('');
 }
@@ -7,7 +6,7 @@ function dispData (himo, awa, kiri, awa2, kiri2) {
   var array = sortArrayByDate(getConcatArray(himo, awa, kiri, awa2, kiri2));
   var table = [];
   table.push('<table border="1">');
-  table.push(['<caption>data : ',getTotalPostsNum(himo, awa, kiri, awa2, kiri2) , ' posts</caption>'].join(''));
+  table.push(['<caption>data : ', getTotalPostsNum(himo, awa, kiri, awa2, kiri2), ' posts</caption>'].join(''));
   table.push('<tr><th>image</th><th>user</th><th>timestamp</th><th>reblog-key</th></tr>');
   for (var i=0; i<array.length; i++) {
     // console.log(array[i]);
