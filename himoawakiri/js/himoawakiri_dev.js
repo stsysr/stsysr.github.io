@@ -7,10 +7,10 @@ function dispData (himo, awa, kiri, awa2, kiri2) {
   var array = sortArrayByDate(getConcatArray(himo, awa, kiri, awa2, kiri2));
   var table = [];
   table.push('<table border="1">');
-  table.push(['<caption>data : ', array.length, ' posts</caption>'].join(''));
+  table.push(['<caption>data : ',getTotalPostsNum(himo, awa, kiri, awa2, kiri2) , ' posts</caption>'].join(''));
   table.push('<tr><th>image</th><th>user</th><th>timestamp</th><th>reblog-key</th></tr>');
   for (var i=0; i<array.length; i++) {
-    console.log(array[i]);
+    // console.log(array[i]);
     table.push('<tr><td>');
     table.push(['<a href="', array[i].url, '"><img src ="', array[i].image_url, '" /></a>'].join(''));
     table.push('</td><td>');
@@ -95,6 +95,10 @@ function convertUnixTimestamp (timestamp) {
   var min = (d.getMinutes() < 10 ) ? '0' + d.getMinutes() : d.getMinutes();
   var sec = (d.getSeconds() < 10 ) ? '0' + d.getSeconds() : d.getSeconds();
   return year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec;
+}
+
+function getTotalPostsNum (himo, awa, kiri, awa2, kiri2) {
+  return parseInt(himo['posts-total'], 10) + parseInt(awa['posts-total'], 10) + parseInt(kiri['posts-total'], 10) + parseInt(awa2['posts-total'], 10) + parseInt(kiri2['posts-total'], 10);
 }
 
 $(function() {
