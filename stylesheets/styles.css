@@ -14,8 +14,13 @@ body.hak {
   font-weight:300;
 }
 
-body.hak img {
+body.hak a img {
   width:100%;
+  margin:0;
+  padding:0;
+}
+
+body.hak a {
   margin:0;
   padding:0;
 }
