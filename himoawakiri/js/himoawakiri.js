@@ -1,4 +1,3 @@
-
 function getURL (name) {
   return ['http://', name, '.tumblr.com/api/read/json?num=100&cnt=1&callback=?'].join('');
 }
@@ -30,7 +29,7 @@ function addObjectToArray (data) {
   for (i=0; i<data.posts.length; i++) {
     array.push({
       'date': Number(data.posts[i]['date-gmt'].replace(/-|\s|:|GMT/g, '')),
-      'image_url': data.posts[i]['photo-url-250'],
+      'image_url': data.posts[i]['photo-url-400'],
       'url': data.posts[i]['url'],
     });
   }
