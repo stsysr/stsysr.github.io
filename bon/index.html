@@ -14,21 +14,20 @@
     $(function() {
       $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
       $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist=Bon%20Jovi&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&format=json', function(data, status, xhr) {
-        $('span.loading').empty().append('✔').fadeOut(1000);
-
-        loop(data.events.event.length, data);
-
-        function loop(max, data) {
+        $('span.loading').empty().append('✔').fadeOut(2000);
+        (function loop(max, data) {
           $('body').append('<div class="info">');
           for (i=0; i<max; i++) {
             var str = [
               '<strong>' + data.events.event[i].title + '</strong>',
-              data.events.event[i].venue.location.city,
+              '<img src="' + data.events.event[i].image[1]["#text"] + '" />',
+              data.events.event[i].venue.name + ', ' + data.events.event[i].venue.location.city,
+              '<img src="' + data.events.event[i].venue.image[1]["#text"] + '" />',
               data.events.event[i].startDate
             ].join('<br>');
             $('div.info').append(str + '<br><br>');
           }
-        }
+        })(data.events.event.length, data);
       });
     });
   </script>
