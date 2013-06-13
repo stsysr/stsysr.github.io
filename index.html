@@ -26,6 +26,7 @@
           $('div.tweet').append(str);
         }
       }
+      // must migrate API to v1.1
       // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterapi&count=2
       $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
         for (j=0; j<10; j++) {
