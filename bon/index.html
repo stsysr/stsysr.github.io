@@ -2,22 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>BON</title>
-    <script type="text/javascript" src="http://typesquare.com/accessor/script/typesquare.js?T53kh5CYQcg%3D" charset="utf-8"></script>
-    <link rel="stylesheet" href="stylesheets/styles.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
   <body>
-  <script src="javascripts/scale.fix.js"></script> 
   <script type="text/javascript">
     $(function() {
+      $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
       $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist=Bon%20Jovi&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&format=json', function(data, status, xhr) {
-        console.log(data);
+        $('span.loading').empty().append('✔').fadeOut(1000);
+
+        loop(data.events.event.length, data);
+        
+        function loop(max, data) {
+          $('body').append('<div class="info">');
+          for (i=0; i<max; i++) {
+            var str = data.events.event[i].title;
+            $('div.info').append(str + '<br>');
+          }
+        }
       });
     });
   </script>
