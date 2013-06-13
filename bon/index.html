@@ -40,13 +40,15 @@
           $('body').append('<div class="info">');
           for (i=0; i<max; i++) {
             var str = [
+              '<p>',
               '<strong>' + data.events.event[i].title + '</strong>',
               data.events.event[i].startDate.slice(0, -9),
               '<img src="' + data.events.event[i].image[1]["#text"] + '" />',
               data.events.event[i].venue.name + ', ' + data.events.event[i].venue.location.city,
-              '<img src="' + data.events.event[i].venue.image[1]["#text"] + '" />'
+              '<img src="' + data.events.event[i].venue.image[1]["#text"] + '" />',
+              '</p>'
             ].join('<br>');
-            $('div.info').append(str + '<br><br>');
+            $('div.info').append(str);
           }
         })(data.events.event.length, data);
       });
