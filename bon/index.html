@@ -11,9 +11,30 @@
   </head>
   <body>
   <script type="text/javascript">
+    function getParamValue (url, key) {
+      var uri = url.split('?');
+      if (uri.length < 2) return '';
+      var params = uri[1].split('&');
+      for (var i=0; i<params.length; i++) {
+        var key_value = params[i].split("=");
+        if (key_value[0] == key && key_value.length == 2) {
+          return key_value[1];
+        }
+      }
+      return '';
+    }
     $(function() {
       $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
-      $.getJSON('http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist=Bon%20Jovi&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&format=json', function(data, status, xhr) {
+      var param = getParamValue(location.href, 'artist');
+      if (param == '') {
+        param = 'bon%20jovi';
+      } 
+      var json = [
+        'http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist=',
+        param,
+        '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&format=json'
+      ].join('');
+      $.getJSON(json, function(data, status, xhr) {
         $('span.loading').empty().append('✔').fadeOut(2000);
         (function loop(max, data) {
           $('body').append('<div class="info">');
@@ -31,5 +52,9 @@
       });
     });
   </script>
+  <form action="./index.html" method="get">
+    <input type="text" name="artist" value="">
+    <input type="submit" value="submit">
+  </form>
   </body>
 </html>
