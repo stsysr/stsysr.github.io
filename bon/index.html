@@ -24,7 +24,7 @@
       return '';
     }
     $(function() {
-      $(document.body).append('<span class="loading"><img src="https://dl.dropboxusercontent.com/u/12247037/loading.gif" />Loading..</span>').hide().fadeIn(1000);
+      $(document.body).append('<span class="loading">Loading..</span>').fadeOut(500,function(){$(this).fadeIn(500)});
       var param = getParamValue(location.href, 'artist');
       if (param == '') {
         param = 'bon%20jovi';
