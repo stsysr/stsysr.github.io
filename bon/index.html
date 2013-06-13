@@ -13,12 +13,16 @@
         $('span.loading').empty().append('✔').fadeOut(1000);
 
         loop(data.events.event.length, data);
-        
+
         function loop(max, data) {
           $('body').append('<div class="info">');
           for (i=0; i<max; i++) {
-            var str = data.events.event[i].title;
-            $('div.info').append(str + '<br>');
+            var str = [
+              '<strong>' + data.events.event[i].title + '</strong>',
+              data.events.event[i].venue.location.city,
+              data.events.event[i].startDate
+            ].join('<br>');
+            $('div.info').append(str + '<br><br>');
           }
         }
       });
