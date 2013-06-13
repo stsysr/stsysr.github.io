@@ -35,7 +35,7 @@
         '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
-        if (data.events.total > 0) {
+        if (data.events.event) {
           $('span.loading').empty().append('✔').fadeOut(2000);
           (function loop(max, data) {
             $('body').append('<div class="info">');
@@ -52,7 +52,7 @@
               $('div.info').append(str);
             }
           })(data.events.event.length, data);
-        } else if (data.events.total == 0) {
+        } else {
           $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
         }
       });
