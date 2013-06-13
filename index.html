@@ -26,7 +26,9 @@
           $('div.tweet').append(str);
         }
       }
-      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
+      // http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?
+      // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterapi&count=2
+      $.getJSON('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stsysr&callback=?', function(data, status, xhr) {
         for (j=0; j<10; j++) {
           if (xhr.status == 400) {
             loop(1, '☼');
