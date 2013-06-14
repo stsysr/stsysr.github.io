@@ -40,7 +40,7 @@
         '&artist=',
         param,
         '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93',
-        '&limit=80',
+        '&limit=1000',
         '&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
