@@ -41,6 +41,9 @@
           (function loop(max, data) {
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
+              // for () {
+              //   artist
+              // }
               var str = [
                 '<p>',
                 '<strong>' + data.events.event[i].title + '</strong>',
@@ -57,7 +60,7 @@
       });
     });
   </script>
-  <form action="./" method="get">
+  <form action="./past.html" method="get">
     <input type="text" name="artist" value="">
     <input type="submit" value="ボンジョビ以外を調べる">
   </form>
