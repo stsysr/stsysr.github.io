@@ -32,7 +32,7 @@
       var json = [
         'http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents&artist=',
         param,
-        '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&limit=1000&format=json'
+        '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93&limit=800&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
         console.log(data.events.event.length);
@@ -41,14 +41,18 @@
           (function loop(max, data) {
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
-              // for () {
-              //   artist
-              // }
+              var artists = [];
+              for (j=0; j<data.events.event[i].artists.artist.length; j++) {
+                artists.push(data.events.event[i].artists.artist[j]);
+              }
+              artists.join(', ');
               var str = [
                 '<p>',
                 '<strong>' + data.events.event[i].title + '</strong>',
                 data.events.event[i].startDate.slice(0, -9),
-                data.events.event[i].venue.name + ', ' + data.events.event[i].venue.location.city,
+                artists,
+                data.events.event[i].venue.name + ', ' + data.events.event[i].venue.location.city + ', ' + data.events.event[i].venue.location.country,
+                '<img src="' + data.events.event[i].image[1]["#text"] + '" />',
                 '</p>'
               ].join('<br>');
               $('div.info').append(str);
