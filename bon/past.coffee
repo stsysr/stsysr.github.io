@@ -44,14 +44,15 @@
         '&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
+        var events = data.events.event;
         $(document.body).append('Search Result : "' + param + '"');
-        if (data.events.event) {
+        if (events) {
           $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
           $('span.loading').empty().append('✔');
           var event_num = 0;
-          var isEventArray = (data.events.event instanceof Array);
+          var isEventArray = (events instanceof Array);
           if (isEventArray) {
-            event_num = data.events.event.length;
+            event_num = events.length;
           } else {
             event_num = 1;
           }
@@ -59,13 +60,19 @@
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
               var artist, lineup, venue, title, startDate;
+              var isArtistsArray = (artist instanceof Array);
               if (isEventArray) {
-                artist = data.events.event[i].artists.artist;
+                title = events[i].title;
+                artist = events[i].artists.artist;
+                venue = events[i].venue;
+                startDate = events[i].startDate;
               } else {
-                artist = data.events.event.artists.artist;
+                title = events.title;
+                artist = events.artists.artist;
+                venue = events.venue;
+                startDate = events.startDate;
               }
-              var isArray = (artist instanceof Array);
-              if (isArray) {
+              if (isArtistsArray) {
                 lineup = [];
                 for (j=0; j<artist.length; j++) {
                   lineup.push(artist[j]);
@@ -73,21 +80,6 @@
                 lineup.join(', ');
               } else {
                 lineup = artist;
-              }
-              if (isEventArray) {
-                venue = data.events.event[i].venue;
-              } else {
-                venue = data.events.event.venue;
-              }
-              if (isEventArray) {
-                title = data.events.event[i].title;
-              } else {
-                title = data.events.event.title;
-              }
-              if (isEventArray) {
-                startDate = data.events.event[i].startDate;
-              } else {
-                startDate = data.events.event.startDate;
               }
               var str = [
                 '<section>',
@@ -110,7 +102,7 @@
   </script>
   <form action="./past.html" method="get">
     <input type="text" name="artist" value="">
-    <input type="submit" id="b" value="ボンジョビを調べる">
+    <input type="submit" id="b" value="調べる">
   </form>
   </body>
 </html>
