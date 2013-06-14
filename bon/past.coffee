@@ -48,7 +48,7 @@
         $(document.body).append('Search Result : "' + param + '"');
         if (events) {
           $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
-          $('span.loading').empty().append('✔');
+          $('span.loading').empty().append('✔ ');
           var event_num = 0;
           var isEventArray = (events instanceof Array);
           if (isEventArray) {
