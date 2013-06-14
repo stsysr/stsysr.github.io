@@ -24,11 +24,11 @@
       return '';
     }
     $(function() {
-      $(document.body).append('<span class="loading">Loading..</span>').fadeOut(500,function(){$(this).fadeIn(500)});
+      $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
       var param = getParamValue(location.href, 'artist');
       if (param == '') {
         param = 'bon%20jovi';
-      } 
+      }
       var json = [
         'http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist=',
         param,
