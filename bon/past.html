@@ -43,9 +43,9 @@
         '&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
-        $(document.body).append('Search Result: ' + param);
+        $(document.body).append('Search Result : ' + param + '<br>');
         if (data.events.event) {
-          $('span.loading').empty().append('✔').fadeOut(2000);
+          $('span.loading').empty().append('✔');
           (function loop(max, data) {
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
