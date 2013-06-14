@@ -29,9 +29,10 @@
         $('span.loading').fadeOut(500,function(){$(this).fadeIn(500)});
       };
       setInterval(loading, 1000);
-      var param = getParamValue(location.href, 'artist');
-      if (param == '') {
+      var param = getParamValue(location.href, 'artist').replace(/\+/, ' ');
+      if (param == '' || param == 'bon+jovi') {
         param = 'bon jovi';
+        $('#b').val('ボンジョビ以外を調べる');
       }
       var json = [
         'http://ws.audioscrobbler.com/2.0/',
@@ -39,20 +40,39 @@
         '&artist=',
         param,
         '&api_key=7d804b465b74e0e6c6fdfd6baeb2ad93',
-        '&limit=800',
+        '&limit=1000',
         '&format=json'
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
-        $(document.body).append('Search Result : ' + param + '<br>');
-        if (data.events.event) {
-          $('span.loading').empty().append('✔');
+        var events = data.events.event;
+        $(document.body).append('Search Result : "' + param + '"');
+        if (events) {
+          $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
+          $('span.loading').empty().append('✔ ');
+          var event_num = 0;
+          var isEventArray = (events instanceof Array);
+          if (isEventArray) {
+            event_num = events.length;
+          } else {
+            event_num = 1;
+          }
           (function loop(max, data) {
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
-              var artist = data.events.event[i].artists.artist;
-              var lineup;
-              var isArray = (artist instanceof Array);
-              if (isArray) {
+              var artist, lineup, venue, title, startDate;
+              var isArtistsArray = (artist instanceof Array);
+              if (isEventArray) {
+                title = events[i].title;
+                artist = events[i].artists.artist;
+                venue = events[i].venue;
+                startDate = events[i].startDate;
+              } else {
+                title = events.title;
+                artist = events.artists.artist;
+                venue = events.venue;
+                startDate = events.startDate;
+              }
+              if (isArtistsArray) {
                 lineup = [];
                 for (j=0; j<artist.length; j++) {
                   lineup.push(artist[j]);
@@ -61,12 +81,11 @@
               } else {
                 lineup = artist;
               }
-              var venue = data.events.event[i].venue;
               var str = [
                 '<section>',
-                '<h2>' + data.events.event[i].title + '</h3>',
+                '<h2>' + title + '</h3>',
                 '<dl>',
-                '<dt>date: </dt><dd>' + data.events.event[i].startDate.slice(0, -9) + '</dd>',
+                '<dt>date: </dt><dd>' + startDate.slice(0, -9) + '</dd>',
                 '<dt>artists: </dt><dd>' + lineup + '</dd>',
                 '<dt>vanue: </dt><dd>' + venue.name + ', ' + venue.location.city + ', ' + venue.location.country + '</dd>',
                 '</dl>',
@@ -74,7 +93,7 @@
               ].join('');
               $('div.info').append(str);
             }
-          })(data.events.event.length, data);
+          })(event_num, data);
         } else {
           $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
         }
@@ -83,7 +102,7 @@
   </script>
   <form action="./past.html" method="get">
     <input type="text" name="artist" value="">
-    <input type="submit" value="ボンジョビ以外を調べる">
+    <input type="submit" id="b" value="調べる">
   </form>
   </body>
 </html>
