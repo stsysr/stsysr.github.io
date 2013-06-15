@@ -51,7 +51,7 @@
       ].join('');
       $.getJSON(json, function(data, status, xhr) {
         var events = data.events.event;
-        $(document.body).append('Search Result : "' + param + '"');
+        $(document.body).append('Search Result : "' + decodeURI(param) + '"');
         if (events) {
           $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
           $('span.loading').empty().append('✔ ');
