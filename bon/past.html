@@ -11,6 +11,7 @@
   </head>
   <body>
   <script type="text/javascript">
+
     function getParamValue (url, key) {
       var uri = url.split('?');
       if (uri.length < 2) return '';
@@ -23,6 +24,11 @@
       }
       return '';
     }
+
+    function isArray (obj) {
+      return obj instanceof Array;
+    }
+
     $(function() {
       $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
       var loading = function(){
@@ -50,8 +56,7 @@
           $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
           $('span.loading').empty().append('✔ ');
           var event_num = 0;
-          var isEventArray = (events instanceof Array);
-          if (isEventArray) {
+          if (isArray(events)) {
             event_num = events.length;
           } else {
             event_num = 1;
@@ -60,8 +65,7 @@
             $('body').append('<div class="info">');
             for (i=0; i<max; i++) {
               var artist, lineup, venue, title, startDate;
-              var isArtistsArray = (artist instanceof Array);
-              if (isEventArray) {
+              if (isArray(events)) {
                 title = events[i].title;
                 artist = events[i].artists.artist;
                 venue = events[i].venue;
@@ -72,7 +76,7 @@
                 venue = events.venue;
                 startDate = events.startDate;
               }
-              if (isArtistsArray) {
+              if (isArray(artist)) {
                 lineup = [];
                 for (j=0; j<artist.length; j++) {
                   lineup.push(artist[j]);
