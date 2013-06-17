@@ -32,13 +32,13 @@
     $(function() {
       $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
       var loading = function(){
-        $('span.loading').fadeOut(500,function(){$(this).fadeIn(500)});
+        $('span.loading').fadeOut(500,function(){$(this).fadeIn(500);});
       };
       setInterval(loading, 1000);
       var param = getParamValue(location.href, 'artist').replace(/\+/, ' ');
       if (param == '' || param == 'bon+jovi') {
         param = 'bon jovi';
-        $('#b').val('ボンジョビ以外を調べる');
+        $('#b').val('BonJovi以外を調べる');
       }
       var json = [
         'http://ws.audioscrobbler.com/2.0/',
@@ -63,7 +63,7 @@
           }
           (function loop(max, data) {
             $('body').append('<div class="info">');
-            for (i=0; i<max; i++) {
+            for (var i=0; i<max; i++) {
               var artist, lineup, venue, title, startDate;
               if (isArray(events)) {
                 title = events[i].title;
@@ -78,7 +78,7 @@
               }
               if (isArray(artist)) {
                 lineup = [];
-                for (j=0; j<artist.length; j++) {
+                for (var j=0; j<artist.length; j++) {
                   lineup.push(artist[j]);
                 }
                 lineup.join(', ');
