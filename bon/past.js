@@ -1,3 +1,5 @@
+'use strict';
+
 function getParamValue (url, key) {
   var uri = url.split('?');
   if (uri.length < 2) return '';
@@ -72,11 +74,7 @@ $(function() {
           }
 
           if (isArray(artist)) {
-            lineup = [];
-            for (var j=0; j<artist.length; j++) {
-              lineup.push(artist[j]);
-            }
-            lineup.join(', ');
+            lineup = artist.reduce(function (acc, x) { return acc + ', ' + x; });
           } else {
             lineup = artist;
           }
