@@ -16,6 +16,53 @@ function isArray (obj) {
   return obj instanceof Array;
 }
 
+function dispEventData (data) {
+  var events = data.events.event;
+  if (events) {
+    $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
+    $('span.loading').empty().append('✔ ');
+    var event_num = 0;
+    (isArray(events))? event_num = events.length : event_num = 1;
+    getEventData(event_num, data, events);
+  } else {
+    $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
+  }
+}
+
+function getEventData (max, data, events) {
+  'use strict';
+  for (var i=0; i<max; i++) {
+    var artist, lineup, venue, title, startDate;
+    if (isArray(events)) {
+      title = events[i].title;
+      artist = events[i].artists.artist;
+      venue = events[i].venue;
+      startDate = events[i].startDate;
+    } else {
+      title = events.title;
+      artist = events.artists.artist;
+      venue = events.venue;
+      startDate = events.startDate;
+    }
+    if (isArray(artist)) {
+      lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
+    } else {
+      lineup = artist;
+    }
+    var str = [
+      '<section>',
+      '<h2>' + title + '</h3>',
+      '<dl>',
+      '<dt>date: </dt><dd>' + startDate.slice(0, -9) + '</dd>',
+      '<dt>artists: </dt><dd>' + lineup + '</dd>',
+      '<dt>venue: </dt><dd>' + venue.name + ', ' + venue.location.city + ', ' + venue.location.country + '</dd>',
+      '</dl>',
+      '</section>'
+    ].join('');
+    $('body').append('<div class="info">').append(str);
+  }
+}
+
 $(function() {
   $(document.body).append('<span class="loading">Loading..</span>').hide().fadeIn(1000);
   var loading = function(){
@@ -40,53 +87,7 @@ $(function() {
   ].join('');
 
   $.getJSON(json, function(data, status, xhr) {
-    var events = data.events.event;
-
     $(document.body).append('Search Result : "' + decodeURI(param) + '"');
-
-    if (events) {
-      $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
-      $('span.loading').empty().append('✔ ');
-
-      var event_num = 0;
-      (isArray(events))? event_num = events.length : event_num = 1;
-
-      (function loop(max, data) {
-        'use strict';
-        for (var i=0; i<max; i++) {
-          var artist, lineup, venue, title, startDate;
-          if (isArray(events)) {
-            title = events[i].title;
-            artist = events[i].artists.artist;
-            venue = events[i].venue;
-            startDate = events[i].startDate;
-          } else {
-            title = events.title;
-            artist = events.artists.artist;
-            venue = events.venue;
-            startDate = events.startDate;
-          }
-          if (isArray(artist)) {
-            lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
-          } else {
-            lineup = artist;
-          }
-          var str = [
-            '<section>',
-            '<h2>' + title + '</h3>',
-            '<dl>',
-            '<dt>date: </dt><dd>' + startDate.slice(0, -9) + '</dd>',
-            '<dt>artists: </dt><dd>' + lineup + '</dd>',
-            '<dt>venue: </dt><dd>' + venue.name + ', ' + venue.location.city + ', ' + venue.location.country + '</dd>',
-            '</dl>',
-            '</section>'
-          ].join('');
-          $('body').append('<div class="info">').append(str);
-        }
-      })(event_num, data);
-
-    } else {
-      $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
-    }
+    dispEventData(data);
   });
 });
