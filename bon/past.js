@@ -58,6 +58,7 @@ $(function() {
 
       (function loop(max, data) {
         $('body').append('<div class="info">');
+
         for (var i=0; i<max; i++) {
           var artist, lineup, venue, title, startDate;
 
@@ -74,7 +75,7 @@ $(function() {
           }
 
           if (isArray(artist)) {
-            lineup = artist.reduce(function (acc, x) { return acc + ', ' + x; });
+            lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
           } else {
             lineup = artist;
           }
@@ -89,6 +90,7 @@ $(function() {
             '</dl>',
             '</section>'
           ].join('');
+
           $('div.info').append(str);
         }
       })(event_num, data);
