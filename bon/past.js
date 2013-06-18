@@ -50,11 +50,7 @@ $(function() {
       $('span.loading').empty().append('✔ ');
 
       var event_num = 0;
-      if (isArray(events)) {
-        event_num = events.length;
-      } else {
-        event_num = 1;
-      }
+      (isArray(events))? event_num = events.length : event_num = 1;
 
       (function loop(max, data) {
         $('body').append('<div class="info">');
