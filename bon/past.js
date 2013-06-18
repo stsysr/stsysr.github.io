@@ -16,6 +16,37 @@ function isArray (obj) {
   return obj instanceof Array;
 }
 
+function getEventInfoValue (events) {
+  var artist, lineup, venue, title, startDate;
+  if (isArray(events)) {
+    title = events[i].title;
+    artist = events[i].artists.artist;
+    venue = events[i].venue;
+    startDate = events[i].startDate;
+  } else {
+    title = events.title;
+    artist = events.artists.artist;
+    venue = events.venue;
+    startDate = events.startDate;
+  }
+  if (isArray(artist)) {
+    lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
+  } else {
+    lineup = artist;
+  }
+  var str = [
+    '<section>',
+    '<h2>' + title + '</h3>',
+    '<dl>',
+    '<dt>date: </dt><dd>' + startDate.slice(0, -9) + '</dd>',
+    '<dt>artists: </dt><dd>' + lineup + '</dd>',
+    '<dt>venue: </dt><dd>' + venue.name + ', ' + venue.location.city + ', ' + venue.location.country + '</dd>',
+    '</dl>',
+    '</section>'
+  ].join('');
+  return str;
+}
+
 function dispEventData (data) {
   var events = data.events.event;
   if (events) {
@@ -23,43 +54,17 @@ function dispEventData (data) {
     $('span.loading').empty().append('✔ ');
     var event_num = 0;
     (isArray(events))? event_num = events.length : event_num = 1;
-    getEventData(event_num, data, events);
+    getEventData(event_num, events);
   } else {
     $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
   }
 }
 
-function getEventData (max, data, events) {
+function getEventData (max, events) {
   'use strict';
   for (var i=0; i<max; i++) {
     var artist, lineup, venue, title, startDate;
-    if (isArray(events)) {
-      title = events[i].title;
-      artist = events[i].artists.artist;
-      venue = events[i].venue;
-      startDate = events[i].startDate;
-    } else {
-      title = events.title;
-      artist = events.artists.artist;
-      venue = events.venue;
-      startDate = events.startDate;
-    }
-    if (isArray(artist)) {
-      lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
-    } else {
-      lineup = artist;
-    }
-    var str = [
-      '<section>',
-      '<h2>' + title + '</h3>',
-      '<dl>',
-      '<dt>date: </dt><dd>' + startDate.slice(0, -9) + '</dd>',
-      '<dt>artists: </dt><dd>' + lineup + '</dd>',
-      '<dt>venue: </dt><dd>' + venue.name + ', ' + venue.location.city + ', ' + venue.location.country + '</dd>',
-      '</dl>',
-      '</section>'
-    ].join('');
-    $('body').append('<div class="info">').append(str);
+    $('body').append('<div class="info">').append(getEventInfoValue(events));
   }
 }
 
