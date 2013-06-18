@@ -53,11 +53,8 @@ $(function() {
       (isArray(events))? event_num = events.length : event_num = 1;
 
       (function loop(max, data) {
-        $('body').append('<div class="info">');
-
         for (var i=0; i<max; i++) {
           var artist, lineup, venue, title, startDate;
-
           if (isArray(events)) {
             title = events[i].title;
             artist = events[i].artists.artist;
@@ -69,13 +66,11 @@ $(function() {
             venue = events.venue;
             startDate = events.startDate;
           }
-
           if (isArray(artist)) {
             lineup = artist.reduce(function (a, b) { return a + ', ' + b; });
           } else {
             lineup = artist;
           }
-
           var str = [
             '<section>',
             '<h2>' + title + '</h3>',
@@ -86,10 +81,10 @@ $(function() {
             '</dl>',
             '</section>'
           ].join('');
-
-          $('div.info').append(str);
+          $('body').append('<div class="info">').append(str);
         }
       })(event_num, data);
+
     } else {
       $('span.loading').empty().append('<p>無し</p>').hide().fadeIn(2000);
     }
