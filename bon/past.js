@@ -1,4 +1,3 @@
-'use strict';
 
 function getParamValue (url, key) {
   var uri = url.split('?');
@@ -53,6 +52,7 @@ $(function() {
       (isArray(events))? event_num = events.length : event_num = 1;
 
       (function loop(max, data) {
+        'use strict';
         for (var i=0; i<max; i++) {
           var artist, lineup, venue, title, startDate;
           if (isArray(events)) {
