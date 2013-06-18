@@ -21,11 +21,13 @@ $(function() {
     $('span.loading').fadeOut(500,function(){$(this).fadeIn(500);});
   };
   setInterval(loading, 1000);
+
   var param = getParamValue(location.href, 'artist').replace(/\+/, ' ');
-  if (param == '' || param == 'bon+jovi') {
+  if (param == '' || param == 'bon jovi') {
     param = 'bon jovi';
     $('#b').val('BonJovi以外を調べる');
   }
+
   var json = [
     'http://ws.audioscrobbler.com/2.0/',
     '?method=artist.getpastevents',
@@ -35,22 +37,28 @@ $(function() {
     '&limit=1000',
     '&format=json'
   ].join('');
+
   $.getJSON(json, function(data, status, xhr) {
     var events = data.events.event;
+
     $(document.body).append('Search Result : "' + decodeURI(param) + '"');
+
     if (events) {
       $(document.body).append(' / Total : ' + data.events['@attr'].total + '<br>');
       $('span.loading').empty().append('✔ ');
+
       var event_num = 0;
       if (isArray(events)) {
         event_num = events.length;
       } else {
         event_num = 1;
       }
+
       (function loop(max, data) {
         $('body').append('<div class="info">');
         for (var i=0; i<max; i++) {
           var artist, lineup, venue, title, startDate;
+
           if (isArray(events)) {
             title = events[i].title;
             artist = events[i].artists.artist;
@@ -62,6 +70,7 @@ $(function() {
             venue = events.venue;
             startDate = events.startDate;
           }
+
           if (isArray(artist)) {
             lineup = [];
             for (var j=0; j<artist.length; j++) {
@@ -71,6 +80,7 @@ $(function() {
           } else {
             lineup = artist;
           }
+
           var str = [
             '<section>',
             '<h2>' + title + '</h3>',
