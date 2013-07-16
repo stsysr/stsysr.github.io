@@ -2,15 +2,15 @@
 <title>test timbre.js</title>
 <script src="timbre.dev.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<button onclick="alert(T.play());">play</button>
-<button onclick="alert(T..pause());">stop</button>
+<button onclick="T.play();">play</button>
+<button onclick="T..pause();">stop</button>
 <br>
 <span class="result"></span>
 <script>
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    var info = ['緯度：' + position.coords.latitude, '経度：' + position.coords.longitude,].join('<br>');
+    var info = ['latitude: ' + position.coords.latitude, 'longitude: ' + position.coords.longitude,].join('<br>');
     $("span.result").html(info);
 
     // var a = T("+", T("sin", {
