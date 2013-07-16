@@ -6,19 +6,25 @@
 <button onclick="alert('test');">play</button>
 <span class="result"></span>
 <script>
-var sine1 = T("sin", {freq:70, mul:0.5});
-var sine2 = T("sin", {freq:73, mul:0.5});
-
-T("perc", {r:3000}, sine1, sine2).on("ended", function() {
-  console.log("done");
-  this.pause();
-}).bang().play();
 
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
     var info = ['緯度：' + position.coords.latitude, '経度：' + position.coords.longitude,].join('<br>');
     $("span.result").html(info);
+
+    var a = T("+", T("sin", {
+      freq: position.coords.latitude,
+      mul: 0.5
+    }), T("sin", {
+      freq: position.coords.longitude,
+      mul: 0.5
+    })).to("perc", {
+      r: 5000
+    }).bang().on("ended", function() {
+      return this.pause();
+    }).play();
+
   }
   function NG(error) {
     console.log("error: " + error.message);
