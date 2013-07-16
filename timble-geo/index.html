@@ -2,14 +2,14 @@
 <title>test timbre.js</title>
 <script src="timbre.dev.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<br>
 <canvas id="canvas"></canvas>
+<br>
 <span class="result"></span>
 <script>
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
-    var info = ['latitude: ' + position.coords.latitude, 'longitude: ' + position.coords.longitude,].join('<br>');
+    var info = [position.coords.latitude, '(緯度)Hzと', position.coords.longitude, '(経度)Hzのサイン波を加算合成しています'].join('');
     $("span.result").html(info);
 
     var a = T("+", T("sin", {
