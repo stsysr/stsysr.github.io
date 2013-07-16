@@ -3,6 +3,7 @@
 <script src="timbre.dev.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <br>
+<canvas id="canvas"></canvas>
 <span class="result"></span>
 <script>
 $(function() {
@@ -11,29 +12,33 @@ $(function() {
     var info = ['latitude: ' + position.coords.latitude, 'longitude: ' + position.coords.longitude,].join('<br>');
     $("span.result").html(info);
 
-    // var a = T("+", T("sin", {
-    //   freq: position.coords.latitude,
-    //   mul: 0.5
-    // }), T("sin", {
-    //   freq: position.coords.longitude,
-    //   mul: 0.5
-    // })).to("perc", {
-    //   r: 5000
-    // }).bang().on("ended", function() {
-    //   return this.pause();
-    // }).play();
-
-    T("perc", {
-      r: 5000
-    }, T("sin", {
-      freq: position.coords.longitude,
+    var a = T("+", T("sin", {
+      freq: position.coords.latitude,
       mul: 0.5
     }), T("sin", {
       freq: position.coords.longitude,
       mul: 0.5
-    })).on("ended", function() {
+    })).to("perc", {
+      r: 5000
+    }).bang().on("ended", function() {
       return this.pause();
-    }).bang().play();
+    }).play();
+
+    T("scope", {interval:200}).on("data", function() {
+      this.plot({target:canvas});
+    }).listen(a);
+
+    // T("perc", {
+    //   r: 5000
+    // }, T("sin", {
+    //   freq: position.coords.longitude,
+    //   mul: 0.5
+    // }), T("sin", {
+    //   freq: position.coords.longitude,
+    //   mul: 0.5
+    // })).on("ended", function() {
+    //   return this.pause();
+    // }).bang().play();
 
   }
   function NG(error) {
