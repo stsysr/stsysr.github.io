@@ -2,11 +2,10 @@
 <title>test timbre.js</title>
 <script src="timbre.dev.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<p>test</p>
-<button onclick="alert('test');">play</button>
+<button onclick="alert(a.play(););">play</button>
+<button onclick="alert(a..pause(););">stop</button>
 <span class="result"></span>
 <script>
-
 $(function() {
   navigator.geolocation.getCurrentPosition(OK, NG);
   function OK(position) {
@@ -23,7 +22,7 @@ $(function() {
       r: 5000
     }).bang().on("ended", function() {
       return this.pause();
-    }).play();
+    });
 
   }
   function NG(error) {
