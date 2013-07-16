@@ -13,10 +13,10 @@ $(function() {
     $("span.result").html(info);
 
     var a = T("+", T("sin", {
-      freq: position.coords.latitude,
+      freq: position.coords.latitude, //lat
       mul: 0.5
     }), T("sin", {
-      freq: position.coords.longitude,
+      freq: position.coords.longitude, //lon
       mul: 0.5
     })).to("perc", {
       r: 5000
