@@ -2,8 +2,6 @@
 <title>test timbre.js</title>
 <script src="timbre.dev.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<button onclick="T.play();">play</button>
-<button onclick="T.pause();">stop</button>
 <br>
 <span class="result"></span>
 <script>
@@ -23,19 +21,19 @@ $(function() {
     //   r: 5000
     // }).bang().on("ended", function() {
     //   return this.pause();
-    // });
+    // }).play();
 
     T("perc", {
       r: 5000
     }, T("sin", {
-      freq: 880,
+      freq: position.coords.longitude,
       mul: 0.5
     }), T("sin", {
-      freq: 890,
+      freq: position.coords.longitude,
       mul: 0.5
     })).on("ended", function() {
       return this.pause();
-    }).bang();
+    }).bang().play();
 
   }
   function NG(error) {
