@@ -71,7 +71,7 @@ $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
 	var url, iframe, type;
 	var param = getParamValue(location.href, 'type');
-	if (param == 'toner' || param == '') {
+	if (param == 'tone' || param == '') {
 		type = 'toner';
 	} else {
 		type = 'watercolor';
