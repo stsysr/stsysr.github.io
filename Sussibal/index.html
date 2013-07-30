@@ -33,7 +33,7 @@ iframe {
 }
 </style>
 </head>
-<body id="b">
+<body>
 <div id="wrapper">
 	<div id="box"><img src="https://dl.dropboxusercontent.com/u/12247037/anago.png"></div>
 </div>
@@ -42,18 +42,14 @@ $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
 	var url, iframe;
 	function OK(position) {
-		console.log("OK");
 		url = ['http://maps.stamen.com/watercolor/embed#14/',position.coords.latitude, '/', position.coords.longitude].join('');
 		iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
-		console.log(iframe);
-		$('#b').append(iframe);
+		$(iframe).insertBefore('#wrapper');
 	}
 	function NG(error) {
-		console.log("NG");
 		url = 'http://maps.stamen.com/watercolor/embed#5/39.926/-221.376';
 		iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
-		console.log(iframe);
-		$('#b').append(iframe);
+		$(iframe).insertBefore('#wrapper');
 	}
 	$('#box').jrumble({
 		x: 10,
