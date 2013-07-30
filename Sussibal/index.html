@@ -38,16 +38,37 @@ iframe {
 	<div id="box"><img src="https://dl.dropboxusercontent.com/u/12247037/anago.png"></div>
 </div>
 <script type="text/javascript">
+
+function getParamValue (url, key) {
+	var uri = url.split('?');
+	if (uri.length < 2) return '';
+	var params = uri[1].split('&');
+	for (var i=0; i<params.length; i++) {
+		var key_value = params[i].split("=");
+		if (key_value[0] == key && key_value.length == 2) {
+			return key_value[1];
+		}
+	}
+	return '';
+}
+
 $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
-	var url, iframe;
+	var url, iframe, type;
+	var param = getParamValue(location.href, 'type');
+	if (param == 'watercolor' || '') {
+		type = 'watercolor';
+	} else {
+		type = 'toner';
+	}
+	console.log(type);
 	function OK(position) {
-		url = ['http://maps.stamen.com/watercolor/embed#14/',position.coords.latitude, '/', position.coords.longitude].join('');
+		url = ['http://maps.stamen.com/', type, '/embed#14/', position.coords.latitude, '/', position.coords.longitude].join('');
 		iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
 		$(iframe).insertBefore('#wrapper');
 	}
 	function NG(error) {
-		url = 'http://maps.stamen.com/watercolor/embed#5/39.926/-221.376';
+		url = 'http://maps.stamen.com/', type, '/embed#5/39.926/-221.376';
 		iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
 		$(iframe).insertBefore('#wrapper');
 	}
@@ -66,6 +87,7 @@ $(function(){
 	};
 	buruStart();
 });
+
 </script>
 </body>
 </html>
