@@ -115,12 +115,12 @@ if  ((document.getElementById) && window.addEventListener || window.attachEvent)
     if (prm == "j" || prm == "") {
       txt = "짜파게티 맛있다";
     } else {
-      txt = "this is real.";
+      txt = "this is real";
     }
 
     var stuff = "<div id='pic"+idx+"' style='position:absolute;"
     +"top:2px;left:2px;height:"+imgh+"px;width:"+imgw+"px;"
-    +"overflow:hidden'>"+txt+"<\/div>";
+    +"overflow:hidden;font-size:3em;'>"+txt+"<\/div>";
     document.write(stuff);
 
     var h,w,r,temp;
