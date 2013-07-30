@@ -117,7 +117,7 @@ if  ((document.getElementById) && window.addEventListener || window.attachEvent)
     } else if (prm == "c") {
       txt = "this is real";
     } else {
-      txt = prm;
+      txt = decodeURI(prm);
     }
 
     var stuff = "<div id='pic"+idx+"' style='position:absolute;"
