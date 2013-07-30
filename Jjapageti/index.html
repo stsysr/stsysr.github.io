@@ -280,7 +280,7 @@ $(function(){
     if (type != '') {
       url = ['http://maps.stamen.com/', type, '/embed#14/', position.coords.latitude, '/', position.coords.longitude].join('');
     } else {
-      url = 'http://www.flickr.com/search/?q=%E3%81%84%E3%81%AA%E3%82%8A%E5%AF%BF%E5%8F%B8';
+      url = 'http://statigr.am/tag/' + query;
     }
     iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
     console.log(iframe);
