@@ -93,22 +93,14 @@ function DegToRad(d) {
 <script type='text/javascript'>
 if  ((document.getElementById) && window.addEventListener || window.attachEvent){
   (function(){
-    var rm_img = new Image();
-    // rm_img.src = "k.jpg"; 
-
     var imgh = 528;  
     var imgw = 381; 
     var timer = 40;
     var min = 1;
     var max = 5;
-
     var idx = 1;
     idx = parseInt(document.images.length);
     if (document.getElementById("pic"+idx)) idx++;
-
-    // var stuff = "<div id='pic"+idx+"' style='position:absolute;"
-    // +"top:2px;left:2px;height:"+imgh+"px;width:"+imgw+"px;"
-    // +"overflow:hidden'><img src='"+rm_img.src+"' alt=''/><\/div>";
 
     var prm = getParamValue(location.href, 'type');
     var txt;
