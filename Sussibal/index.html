@@ -69,10 +69,10 @@ $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
 	var url, iframe, type;
 	var param = getParamValue(location.href, 'type');
-	if (param == 'watercolor' || param == '') {
-		type = 'watercolor';
-	} else {
+	if (param == 'toner' || param == '') {
 		type = 'toner';
+	} else {
+		type = 'watercolor';
 	}
 	console.log(type);
 	function OK(position) {
