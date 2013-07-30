@@ -31,24 +31,29 @@ iframe {
 }
 </style>
 </head>
-<body>
-<iframe width="100%" height="100%" src="getMapUrl();"></iframe>
+<body id="b">
 <div id="wrapper">
 	<div id="box"><img src="https://dl.dropboxusercontent.com/u/12247037/anago.png"></div>
 </div>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://jackrugile.com/jrumble/js/jquery.jrumble.1.3.js"></script> 
 <script type="text/javascript">
-function getMapUrl() {
+$(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
+	var url;
 	function OK(position) {
-		return ['http://maps.stamen.com/watercolor/embed#12/',position.coords.latitude, '/', position.coords.longitude].join('');
+		console.log("OK");
+		url = ['http://maps.stamen.com/watercolor/embed#12/',position.coords.latitude, '/', position.coords.longitude].join('');
+		return url;
 	}
 	function NG(error) {
-		return 'http://maps.stamen.com/watercolor/embed#5/39.926/-221.376';
+		console.log("NG");
+		url = 'http://maps.stamen.com/watercolor/embed#5/39.926/-221.376';
+		return url;
 	}
-}
-$(function(){
+	var iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
+	console.log(iframe);
+	$('#b').append(iframe);
 	$('#box').jrumble({
 		x: 10,
 		y: 10,
