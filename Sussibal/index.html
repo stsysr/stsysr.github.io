@@ -56,7 +56,7 @@ $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
 	var url, iframe, type;
 	var param = getParamValue(location.href, 'type');
-	if (param == 'watercolor' || '') {
+	if (param == 'watercolor' || parama == '') {
 		type = 'watercolor';
 	} else {
 		type = 'toner';
