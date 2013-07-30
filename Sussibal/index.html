@@ -79,6 +79,7 @@ $(function(){
 	function OK(position) {
 		url = ['http://maps.stamen.com/', type, '/embed#14/', position.coords.latitude, '/', position.coords.longitude].join('');
 		iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
+		console.log(iframe);
 		$(iframe).insertBefore('#wrapper');
 	}
 	function NG(error) {
