@@ -23,6 +23,19 @@ iframe {
 	bottom:0;
 	left:0;
 }
+#wrapper a {
+	display: block;
+	width: 8em;
+	padding: 0.3em;
+	background-color: yellow;
+	float: right;
+	font-size: 1.5em;
+	text-align: center;
+	margin-left: 5px;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
 #box {
 	width:300px;
 	height:300px;
@@ -35,10 +48,11 @@ iframe {
 </head>
 <body>
 <div id="wrapper">
+	<a href="?type=tone">monotone</a>
+	<a href="?type=watercolor">watercolor</a>
 	<div id="box"><img src="https://dl.dropboxusercontent.com/u/12247037/anago.png"></div>
 </div>
 <script type="text/javascript">
-
 function getParamValue (url, key) {
 	var uri = url.split('?');
 	if (uri.length < 2) return '';
@@ -51,12 +65,11 @@ function getParamValue (url, key) {
 	}
 	return '';
 }
-
 $(function(){
 	navigator.geolocation.getCurrentPosition(OK, NG);
 	var url, iframe, type;
 	var param = getParamValue(location.href, 'type');
-	if (param == 'watercolor' || parama == '') {
+	if (param == 'watercolor' || param == '') {
 		type = 'watercolor';
 	} else {
 		type = 'toner';
