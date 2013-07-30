@@ -25,7 +25,7 @@ iframe {
   bottom:0;
   left:0;
 }
-#w a {
+#w .b {
   display: block;
   width: 8em;
   padding: 0.3em;
@@ -52,8 +52,10 @@ function drawCanvas() {
     var p = getParamValue(location.href, 'type');
     if (p == "j" || p == "") {
       happy.src = "https://dl.dropboxusercontent.com/u/12247037/chapageti.jpg";
-    } else {
+    } else if (p == "c") {
       happy.src = "https://dl.dropboxusercontent.com/u/12247037/honshibo.jpg";
+    } else {
+      happy.src = "https://dl.dropboxusercontent.com/u/12247037/salmon.jpg";
     }
   }
 }
@@ -85,8 +87,14 @@ function DegToRad(d) {
 <body onload="drawCanvas();">
 
 <div id="w">
-  <a href="?type=j">Jjapageti</a>
-  <a href="?type=c">Chu-hi</a>
+  <a class="b" href="?type=j">Jjapageti</a>
+  <a class="b" href="?type=c">Chu-hi</a>
+  <span class="b">
+    <form action="" method="get">
+      <input type="text" name="type" value="">
+      <input type="submit" value="GO!">
+    </form>
+  </span>
   <canvas id="target" width="700" height="500"></canvas>
 </div>
 
@@ -106,8 +114,10 @@ if  ((document.getElementById) && window.addEventListener || window.attachEvent)
     var txt;
     if (prm == "j" || prm == "") {
       txt = "짜파게티 맛있다";
-    } else {
+    } else if (prm == "c") {
       txt = "this is real";
+    } else {
+      txt = prm;
     }
 
     var stuff = "<div id='pic"+idx+"' style='position:absolute;"
@@ -260,17 +270,28 @@ $(function(){
   var param = getParamValue(location.href, 'type');
   if (param == 'j' || param == '') {
     type = 'watercolor';
+  } else if (param == 'c') {
+    type = 'toner-lite';
   } else {
-    type = 'toner';
+    type = '';
+    var query = param;
   }
   function OK(position) {
-    url = ['http://maps.stamen.com/', type, '/embed#14/', position.coords.latitude, '/', position.coords.longitude].join('');
+    if (type != '') {
+      url = ['http://maps.stamen.com/', type, '/embed#14/', position.coords.latitude, '/', position.coords.longitude].join('');
+    } else {
+      url = 'http://www.flickr.com/search/?q=%E3%81%84%E3%81%AA%E3%82%8A%E5%AF%BF%E5%8F%B8';
+    }
     iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
     console.log(iframe);
     $(iframe).insertBefore('#w');
   }
   function NG(error) {
-    url = ['http://maps.stamen.com/', type, '/embed#5/39.926/-221.376'].join('');
+    if (type != '') {
+      url = ['http://maps.stamen.com/', type, '/embed#5/39.926/-221.376'].join('');
+    } else {
+      url = 'http://www.flickr.com/search/?q=' + query;
+    }
     iframe = '<iframe width="100%" height="100%" src="' + url + '"></iframe>';
     console.log(iframe);
     $(iframe).insertBefore('#w');
