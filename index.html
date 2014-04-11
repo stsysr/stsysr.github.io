@@ -29,16 +29,16 @@
       }
       // must migrate API to v1.1
       // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterapi&count=2
-      $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
-        for (j=0; j<10; j++) {
-          if (xhr.status == 400) {
-            loop(1, '☼');
-          } else {
-            var array = data[j].text.replace(/(^|\s)@(\w+)|http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/g, '').split('');
-            loop(array.length, array);
-          }
-        }
-      });
+      // $.getJSON('http://api.twitter.com/1/statuses/user_timeline/stsysr.json?callback=?', function(data, status, xhr) {
+      //   for (j=0; j<10; j++) {
+      //     if (xhr.status == 400) {
+      //       loop(1, '☼');
+      //     } else {
+      //       var array = data[j].text.replace(/(^|\s)@(\w+)|http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/g, '').split('');
+      //       loop(array.length, array);
+      //     }
+      //   }
+      // });
     });
   </script>
   </body>
