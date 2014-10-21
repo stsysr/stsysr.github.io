@@ -1,7 +1,7 @@
 {
   "author" : "stsysr",
-  "name" : "BusterJS on TravisCI",
-  "description" : "Buster.JS on Travis CI",
+  "name" : "TravisCI",
+  "description" : "",
   "version" : "0.0.0",
   "scripts" : {
     "test" : "node_modules/.bin/buster-test -r specification"
