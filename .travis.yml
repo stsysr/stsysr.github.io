@@ -1,1 +1,4 @@
+script:
+  - "npm test"
+
 language: node_js
