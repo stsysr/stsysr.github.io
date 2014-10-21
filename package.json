@@ -1,16 +1,16 @@
 {
-    author: "stsysr",
-    name: "BusterJS on TravisCI",
-    description: "Buster.JS on Travis CI",
-    version: "0.0.0",
-    scripts: {
-        test: "node_modules/.bin/buster-test -r specification"
-    },
-    devDependencies: {
-        buster: "~0.7",
-        phantomjs: ">=1.9"
-    },
-    engines: {
-        node: "~0.1"
-    }
+author: "stsysr",
+name: "BusterJS on TravisCI",
+description: "Buster.JS on Travis CI",
+version: "0.0.0",
+scripts: {
+test: "node_modules/.bin/buster-test -r specification"
+},
+devDependencies: {
+buster: "~0.7",
+phantomjs: ">=1.9"
+},
+engines: {
+node: "~0.1"
+}
 }
