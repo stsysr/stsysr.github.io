@@ -3,12 +3,12 @@ window.addEventListener('deviceorientation', function(event) {
   document.getElementById("target").setAttribute('style', 'position:absolute; top:'+position(event.beta)+'px; left:'+position(event.gamma)+'px; -webkit-transform:skew('+transform(event.beta)+'deg); -moz-transform: skew('+transform(event.beta)+'deg);');
 });
 function position (num){
-  res = Math.round(num*20);
+  res = Math.round(num*50);
   res = Math.abs(res);
   return res;
 }
 function transform (num){
-  return Math.round(num*500);
+  return Math.round(num*1000);
 }
 </script>
 <h1 id="target">꒰(๑´•.̫ • `๑)꒱</h1>
