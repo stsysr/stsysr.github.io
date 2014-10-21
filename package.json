@@ -7,8 +7,8 @@
         test: "node_modules/.bin/buster-test -r specification"
     },
     devDependencies: {
-        buster: "~0.7",
-        phantomjs: ">=1.9"
+        buster: "~0.6",
+        phantomjs: ">=1.0.0"
     },
     engines: {
         node: "~0.1"
