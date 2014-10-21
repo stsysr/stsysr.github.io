@@ -1,0 +1,7 @@
+<script>
+window.addEventListener('deviceorientation', function(event) {
+  var target = document.getElementById("target");
+  target.innerHTML = (event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+});
+</script>
+<div id="target"></div>
