@@ -1,11 +1,14 @@
 <script>
 window.addEventListener('deviceorientation', function(event) {
-  document.getElementById("target").innerHTML = (trim(event.beta) + ' : ' + trim(event.gamma));
-  document.getElementById("elm").setAttribute('style', 'position:absolute;  top:'+trim(event.beta)+'px; left:'+trim(event.gamma)+'px;');
+  document.getElementById("target").setAttribute('style', 'position:absolute; top:'+position(event.beta)+'px; left:'+position(event.gamma)+'px; -webkit-transform:skew('+transform(event.beta)+'deg); -moz-transform: skew('+transform(event.beta)+'deg);');
 });
-function trim (num){
-  return Math.abs(Math.round(num*100));
+function position (num){
+  res = Math.round(num*20);
+  res = Math.abs(res);
+  return res;
+}
+function transform (num){
+  return Math.round(num*500);
 }
 </script>
-<div id="target"></div>
-<div id="elm">꒰(๑´•.̫ • `๑)꒱</div>
+<h1 id="target">꒰(๑´•.̫ • `๑)꒱</h1>
