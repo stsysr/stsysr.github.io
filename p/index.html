@@ -1,2 +1,15 @@
-
-<h1 id="target">（´•.</h1><h1 id="target2">̫ • `）</h1>
+<script>
+window.addEventListener('deviceorientation', function(event) {
+  document.getElementById("target").setAttribute('style', 'position:absolute; top:'+position(event.beta)+'px; left:'+position(event.gamma)+'px; -webkit-transform:skew('+transform(event.beta)+'deg); -moz-transform: skew('+transform(event.beta)+'deg);');
+  document.getElementById("target2").setAttribute('style', 'position:absolute; top:'+position(event.beta)+'px; left:'+position(event.gamma)+'px; -webkit-transform:skew('+transform(event.gamma)+'deg); -moz-transform: skew('+transform(event.gamma)+'deg);');
+});
+function position (num){
+  res = Math.round(num*50);
+  res = Math.abs(res);
+  return res;
+}
+function transform (num){
+  return Math.round(num*100);
+}
+</script>
+<h1><span id="target">（´•.</span><span id="target2">̫ • `）</span></h1>
